@@ -1,1 +1,1 @@
-# spring-react-i18n-admin
+# Spring + React Localization (l10n) Administration

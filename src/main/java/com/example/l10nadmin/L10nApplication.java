@@ -1,13 +1,13 @@
-package com.example.springreacti18nadmin;
+package com.example.l10nadmin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class L10nApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(L10nApplication.class, args);
 	}
 
 }
