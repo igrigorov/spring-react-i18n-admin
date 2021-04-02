@@ -3,6 +3,12 @@ package com.example.l10nadmin;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Main class of the Localization Application
+ *
+ * @author Ivan Grigorov
+ * @version 2021.04.01
+ */
 @SpringBootApplication
 public class L10nApplication {
 
