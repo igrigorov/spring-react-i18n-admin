@@ -1,6 +1,13 @@
 # Spring + React Localization (l10n) Administration
 
-# Read Me First
+Template implementation of React i18n with translations in DB.
+
+Backend implemented in Spring Boot with JPA. DB is H2, just for sample purposes.
+
+Implementation stack (the latest possible to date):
+* Spring Boot 2.5.0-M3
+* React XXX
+* Java 16 (with a baad workaround in the maven-compiler plugin in order for Lombok to work)
 
 # Getting Started
 
