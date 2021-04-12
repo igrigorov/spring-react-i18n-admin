@@ -11,7 +11,11 @@ Implementation stack (the latest possible to date):
 
 # Getting Started
 
-## Local compile JVM options
+## IntelliJ
+
+IntelliJ version 21.1 is required, as it is the earliest supporting Java 16.
+
+### Local compile JVM options
 
 In order for the application to run under IntelliJ, the following should be added to the compiler JVM settings (again due to Lombok vs. Java 16 incompatibility)
 

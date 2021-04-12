@@ -25,6 +25,7 @@
 	<!-- ############ -->
 	<properties>
 		<java.version>16</java.version>
+		<spring.boot.version>2.5.0-M3</spring.boot.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 

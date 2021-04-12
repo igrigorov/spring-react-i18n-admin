@@ -2,7 +2,6 @@ package com.example.l10nadmin.repository;
 
 import com.example.l10nadmin.domain.L10n;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +15,6 @@ import java.util.List;
 @Repository
 public interface L10nRepository extends JpaRepository<L10n, Long> {
 
-	List<L10n> findByLocaleAndActiveIsTrue(@Param("locale") String locale);
+	List<L10n> findByLocaleAndActiveIsTrue(String locale);
 
 }
