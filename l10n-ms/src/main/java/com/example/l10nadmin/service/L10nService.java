@@ -1,15 +1,10 @@
 package com.example.l10nadmin.service;
 
 import com.example.l10nadmin.domain.L10n;
-import com.example.l10nadmin.domain.requestForm;
 import com.example.l10nadmin.repository.L10nRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -29,15 +24,5 @@ public class L10nService {
 		return l10nRepository.findByLocaleAndActiveIsTrue(locale.toUpperCase())
 				.stream()
 				.collect(Collectors.toMap(L10n::getLic, L10n::getValue));
-	}
-
-	@Transactional
-	public void createNewEntry (requestForm form){
-
-		l10nRepository.insertNewEntry(form.getLocale(), form.getLic(), form.getValue());
-	}
-	@Transactional
-	public void updateEntry ( String id,String locale, String lic, String value, boolean active){
-		l10nRepository.updateExistingEntry(Long.parseLong(id),locale,lic,value,active);
 	}
 }

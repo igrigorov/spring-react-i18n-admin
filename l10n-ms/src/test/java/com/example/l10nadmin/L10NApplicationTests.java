@@ -29,11 +29,4 @@ class L10NApplicationTests {
 				.andExpect(jsonPath("$").value(hasKey("test.test")));
 	}
 
-	@Test
-	@DisplayName("GET all")
-	public void getAllEntries() throws Exception {
-		mvc.perform(get("/l10n/l10n").contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
-	}
 }
