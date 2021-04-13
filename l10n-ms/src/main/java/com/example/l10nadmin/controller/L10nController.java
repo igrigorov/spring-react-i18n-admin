@@ -39,7 +39,7 @@ public class L10nController {
 			@ApiResponse(code = 401, message = "Unauthorized"),
 			@ApiResponse(code = 500, message = "System Error")})
 	public ResponseEntity<List<L10n>> getAllLocalization() {
-		//LOG.info("Retrieve locale texts for {}", locale);
+		LOG.info("Retrieve all values");
 		return ResponseEntity.ok(l10nRepository.findAll());
 	}
 
@@ -48,14 +48,10 @@ public class L10nController {
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "Successful"),
 			@ApiResponse(code = 401, message = "Unauthorized"),
 			@ApiResponse(code = 500, message = "System Error")})
-	public ResponseEntity<Boolean> postNewEntry(@RequestBody requestForm form) {
-		//LOG.info("Retrieve locale texts for {}", locale);
-		try{
+	public ResponseEntity postNewEntry(@RequestBody requestForm form) {
+			LOG.info("Create new entry with value"+form.toString());
 			l10nService.createNewEntry(form);
 			return ResponseEntity.ok(true);
-		}catch (Exception e){
-			return ResponseEntity.ok(false);
-		}
 	}
 
 	@PutMapping("l10n/entry/{id}")
@@ -64,12 +60,8 @@ public class L10nController {
 			@ApiResponse(code = 401, message = "Unauthorized"),
 			@ApiResponse(code = 500, message = "System Error")})
 	public ResponseEntity<Boolean> replaceEntry(@PathVariable String id,@RequestBody requestForm form) {
-		//LOG.info("Retrieve locale texts for {}", locale);
-		try{
+			LOG.info("Replace existing entry id {} with value{}", id, form.toString());
 			l10nService.updateEntry(id, form.getLocale(), form.getLic(), form.getValue(), form.isActive());
 			return ResponseEntity.ok(true);
-		}catch (Exception e){
-			return ResponseEntity.ok(false);
-		}
 	}
 }
