@@ -10,7 +10,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import static org.hamcrest.Matchers.hasKey;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest()
@@ -45,9 +46,9 @@ class L10NApplicationTests {
 	.andExpect(status().isOk());}
 
 	@Test
-	@DisplayName("replace existing entry")
+	@DisplayName("insert new entry")
 	public void replaceEntry() throws Exception {
-		mvc.perform(put("/l10n/l10n/entry/7").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/l10n/l10n/entry/6").contentType(MediaType.APPLICATION_JSON)
 				.content("{\"locale\": \"EN\",\"lic\": \"test.third\",\"value\": \"test\", \"active\":true }"))
 				.andExpect(status().isOk());}
 
