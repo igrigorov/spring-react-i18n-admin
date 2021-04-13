@@ -6,7 +6,7 @@ function fetch() {
 
 function fetchAPI(lng) {
 
-    return fetch("127.0.0.1:56727/l10n/locale/"+lng);
+    return fetch("127.0.0.1:8080/l10n/locale/"+lng);
 }
 
 
