@@ -7,9 +7,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import static org.hamcrest.Matchers.hasKey;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest()
@@ -36,4 +38,18 @@ class L10NApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
 	}
+	@Test
+	@DisplayName("insert new entry")
+	public void insertNewEntry() throws Exception {
+		mvc.perform(post("/l10n/l10n/entry").contentType(MediaType.APPLICATION_JSON)
+		.content("{\"locale\": \"GR\",\"lic\": \"test.third\",\"value\": \"test\" }"))
+	.andExpect(status().isOk());}
+
+	@Test
+	@DisplayName("insert new entry")
+	public void replaceEntry() throws Exception {
+		mvc.perform(post("/l10n/l10n/entry/6").contentType(MediaType.APPLICATION_JSON)
+				.content("{\"locale\": \"EN\",\"lic\": \"test.third\",\"value\": \"test\", \"active\":true }"))
+				.andExpect(status().isOk());}
+
 }
