@@ -4,6 +4,9 @@ import com.example.l10nadmin.domain.L10n;
 import com.example.l10nadmin.domain.requestForm;
 import com.example.l10nadmin.repository.L10nRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,13 +18,13 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class L10nService {
 
 	/*
 	 * Repositories
 	 */
 	private final L10nRepository l10nRepository;
-
 	/**
 	 * Returns the localization entries for the requested locale
 	 */
