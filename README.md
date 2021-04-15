@@ -6,14 +6,15 @@ Backend implemented in Spring Boot with JPA. DB is H2, just for sample purposes.
 
 Implementation stack (the latest possible to date):
 * Spring Boot 2.5.0-M3
-* React XXX
-* Java 16 (with a baad workaround in the maven-compiler plugin in order for Lombok to work)
+* React 17.0.2
+* Java 16 (with an uugly workaround in the maven-compiler plugin in order for Lombok to work)
 
 # Getting Started
 
 ## IntelliJ
 
-IntelliJ version 21.1 is required, as it is the earliest supporting Java 16.
+IntelliJ version 21.1 is required, as it is the earliest supporting Java 16.  
+In addition, NodeJS version 10+ is required in order to run React.
 
 ### Local compile JVM options
 
