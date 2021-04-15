@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF8"?>
+<toolchains>
+	<!-- JDK toolchains -->
+	<toolchain>
+		<type>jdk</type>
+		<provides>
+			<version>16</version>
+			<!-- <vendor>sun</vendor> -->
+		</provides>
+		<configuration>
+			<jdkHome>C:\dev\Java\jdk-16</jdkHome>
+		</configuration>
+	</toolchain>
+</toolchains>
