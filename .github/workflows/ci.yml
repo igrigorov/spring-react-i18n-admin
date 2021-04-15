@@ -35,4 +35,4 @@ jobs:
 
       # Runs a Maven build, up to 'verify'
       - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots verify
+        run: mvn --batch-mode --update-snapshots verify -P no-toolchains
