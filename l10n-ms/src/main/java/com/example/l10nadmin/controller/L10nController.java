@@ -49,9 +49,9 @@ public class L10nController {
 			@ApiResponse(code = 401, message = "Unauthorized"),
 			@ApiResponse(code = 500, message = "System Error")})
 	public ResponseEntity postNewEntry(@RequestBody requestForm form) {
-			LOG.info("Create new entry with value"+form.toString());
-			l10nService.createNewEntry(form);
-			return ResponseEntity.ok(true);
+		LOG.info("Create new entry with value" + form.toString());
+		l10nService.createNewEntry(form);
+		return ResponseEntity.ok(true);
 	}
 
 	@PutMapping("l10n/entry/{id}")
@@ -59,9 +59,9 @@ public class L10nController {
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "Successful"),
 			@ApiResponse(code = 401, message = "Unauthorized"),
 			@ApiResponse(code = 500, message = "System Error")})
-	public ResponseEntity<Boolean> replaceEntry(@PathVariable String id,@RequestBody requestForm form) {
-			LOG.info("Replace existing entry id {} with value{}", id, form.toString());
-			l10nService.updateEntry(id, form.getLocale(), form.getLic(), form.getValue(), form.isActive());
-			return ResponseEntity.ok(true);
+	public ResponseEntity<Boolean> replaceEntry(@PathVariable String id, @RequestBody requestForm form) {
+		LOG.info("Replace existing entry id {} with value{}", id, form.toString());
+		l10nService.updateEntry(id, form.getLocale(), form.getLic(), form.getValue(), form.isActive());
+		return ResponseEntity.ok(true);
 	}
 }

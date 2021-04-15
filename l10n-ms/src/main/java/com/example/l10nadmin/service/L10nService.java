@@ -4,15 +4,11 @@ import com.example.l10nadmin.domain.L10n;
 import com.example.l10nadmin.domain.requestForm;
 import com.example.l10nadmin.repository.L10nRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -25,6 +21,7 @@ public class L10nService {
 	 * Repositories
 	 */
 	private final L10nRepository l10nRepository;
+
 	/**
 	 * Returns the localization entries for the requested locale
 	 */
@@ -35,20 +32,21 @@ public class L10nService {
 	}
 
 	@Transactional
-	public void createNewEntry (requestForm form){
-	try {
-		l10nRepository.insertNewEntry(form.getLocale(), form.getLic(), form.getValue());
-	}catch(Exception e) {
-		LOG.error("Error during save {}:",e);
-		throw e;
+	public void createNewEntry(requestForm form) {
+		try {
+			l10nRepository.insertNewEntry(form.getLocale(), form.getLic(), form.getValue());
+		} catch (Exception e) {
+			LOG.error("Error during save {}:", e);
+			throw e;
 		}
 	}
+
 	@Transactional
-	public void updateEntry ( String id,String locale, String lic, String value, boolean active){
+	public void updateEntry(String id, String locale, String lic, String value, boolean active) {
 		try {
-			l10nRepository.updateExistingEntry(Long.parseLong(id), locale, lic, value, active);
-		}catch (Exception e){
-			LOG.error("Error during update {}:",e);
+			l10nRepository.updateExistingEntry(Long.parseLong(id), locale, lic, value, active, LocalDateTime.now());
+		} catch (Exception e) {
+			LOG.error("Error during update {}:", e);
 			throw e;
 		}
 	}

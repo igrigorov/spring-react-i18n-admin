@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -20,10 +21,10 @@ public interface L10nRepository extends JpaRepository<L10n, Long> {
 	List<L10n> findByLocaleAndActiveIsTrue(String locale);
 
 	@Modifying
-	@Query(value="update L10n set active=?5, locale=?2, lic=?3 ,value=?4 where id=?1", nativeQuery = true)
-	void updateExistingEntry(Long id, String locale, String lic, String value, boolean active);
+	@Query(value = "update L10n set active=?5, locale=?2, lic=?3 ,value=?4,modifiedOn=?6 where id=?1", nativeQuery = true)
+	void updateExistingEntry(Long id, String locale, String lic, String value, boolean active, LocalDateTime time);
 
 	@Modifying
-	@Query(value="insert into L10n(locale, lic, value) values(?1,?2,?3)", nativeQuery = true)
-	void insertNewEntry( String locale, String lic, String value);
+	@Query(value = "insert into L10n(locale, lic, value) values(?1,?2,?3)", nativeQuery = true)
+	void insertNewEntry(String locale, String lic, String value);
 }
