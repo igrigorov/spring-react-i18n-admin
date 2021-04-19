@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
  * @version 2021.04.02
  */
 @Entity
-@Table(name = "L10n")
 @Data    // = @ToString, @EqualsAndHashCode, @Getter, @Setter and @RequiredArgsConstructor
 public class L10n {
 
@@ -23,48 +22,40 @@ public class L10n {
 	/**
 	 * Language code of the l10n entry, e.g. EN, BG
 	 */
-	@Column(name = "locale")
+	@Column
 	private String locale;
 	/**
 	 * Language Independent Code of the l10n entry
 	 */
-	@Column(name = "lic")
+	@Column
 	private String lic;
-	@Column(name = "value")
+	@Column
 	private String value;
 	/**
 	 * Whether the entry is active or not (if not, will not be returned by the app
 	 */
-	@Column(name = "active")
+	@Column
 	private boolean active;
 
 	/**
 	 * Username of the person who created the entry (XXX : needs some sort of authentication)
 	 */
-	@Column(name = "createdBy")
+	@Column
 	private String createdBy;
 	/**
 	 * Timestamp when the entry was created
 	 */
-	@Column(name = "createdOn")
+	@Column
 	private LocalDateTime createdOn;
 	/**
 	 * Username of the person who last modified the entry (XXX : needs some sort of authentication)
 	 */
-	@Column(name = "modifiedBy")
+	@Column
 	private String modifiedBy;
 	/**
 	 * Timestamp when the entry was last modified
 	 */
-	@Column(name = "modifiedOn")
+	@Column
 	private LocalDateTime modifiedOn;
 
-	public L10n(String locale, String lic, String value) {
-		this.locale = locale;
-		this.lic = lic;
-		this.value = value;
-	}
-
-	public L10n() {
-	}
 }
