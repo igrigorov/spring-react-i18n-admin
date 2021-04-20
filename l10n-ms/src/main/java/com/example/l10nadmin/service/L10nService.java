@@ -1,7 +1,7 @@
 package com.example.l10nadmin.service;
 
-import com.example.l10nadmin.domain.L10n;
-import com.example.l10nadmin.domain.requestForm;
+import com.example.l10nadmin.domain.*;
+import com.example.l10nadmin.mapper.L10nMapper;
 import com.example.l10nadmin.repository.L10nRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,7 @@ public class L10nService {
 	 * Repositories
 	 */
 	private final L10nRepository l10nRepository;
+	private final L10nMapper l10nMapper;
 
 	/**
 	 * Returns the localization entries for the requested locale
@@ -31,10 +33,23 @@ public class L10nService {
 				.collect(Collectors.toMap(L10n::getLic, L10n::getValue));
 	}
 
+	public List<L10n> findAll() {
+		return l10nRepository.findAll();
+	}
+
 	@Transactional
-	public void createNewEntry(requestForm form) {
+	public L10nDto createNewEntry(requestForm form) {
 		try {
-			l10nRepository.insertNewEntry(form.getLocale(), form.getLic(), form.getValue());
+			L10n newEntry = new L10n();
+			newEntry.setValue(form.getValue());
+			newEntry.setLocale(form.getLocale());
+			newEntry.setActive(form.isActive());
+			newEntry.setLic(form.getLic());
+			newEntry.setCreatedOn(LocalDateTime.now());
+			newEntry.setModifiedOn(LocalDateTime.now());
+			newEntry.setCreatedBy("SUPERPALAV");
+			newEntry.setModifiedBy("SUPERPALAV");
+			return l10nMapper.toL10nDTO(l10nRepository.save(newEntry));
 		} catch (Exception e) {
 			LOG.error("Error during save {}:", e);
 			throw e;
@@ -42,9 +57,11 @@ public class L10nService {
 	}
 
 	@Transactional
-	public void updateEntry(String id, String locale, String lic, String value, boolean active) {
+	public void updateEntry(String lic, requestUpdateEntryForm form) {
 		try {
-			l10nRepository.updateExistingEntry(Long.parseLong(id), locale, lic, value, active, LocalDateTime.now());
+			for (Locale loc : form.getValues()) {
+				l10nRepository.updateExistingEntry(lic, loc.getLocaleName(), loc.getValue(), form.isActive(), LocalDateTime.now());
+			}
 		} catch (Exception e) {
 			LOG.error("Error during update {}:", e);
 			throw e;

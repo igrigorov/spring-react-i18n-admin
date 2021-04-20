@@ -1,6 +1,8 @@
 package com.example.l10nadmin.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -16,7 +18,8 @@ import java.time.LocalDateTime;
 public class L10n {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "L10n_id_generator")
+	@SequenceGenerator(name = "L10n_id_generator", sequenceName = "L10n_id_seq", allocationSize = 1)
 	private long id;
 
 	/**
