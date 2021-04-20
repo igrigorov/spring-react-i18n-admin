@@ -21,10 +21,7 @@ public interface L10nRepository extends JpaRepository<L10n, Long> {
 	List<L10n> findByLocaleAndActiveIsTrue(String locale);
 
 	@Modifying
-	@Query(value = "update L10n set active=?5, locale=?2, lic=?3 ,value=?4,modifiedOn=?6 where id=?1", nativeQuery = true)
-	void updateExistingEntry(Long id, String locale, String lic, String value, boolean active, LocalDateTime time);
+	@Query(value = "update L10n set active=?4, value=?3,modifiedOn=?5 where lic=?1 and locale=?2", nativeQuery = true)
+	void updateExistingEntry(String lic, String locale, String value, boolean active, LocalDateTime time);
 
-	@Modifying
-	@Query(value = "insert into L10n(locale, lic, value) values(?1,?2,?3)", nativeQuery = true)
-	void insertNewEntry(String locale, String lic, String value);
 }

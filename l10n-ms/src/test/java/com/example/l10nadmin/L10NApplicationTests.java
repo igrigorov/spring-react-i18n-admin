@@ -47,8 +47,8 @@ class L10NApplicationTests {
 	@Test
 	@DisplayName("replace existing entry")
 	public void replaceEntry() throws Exception {
-		mvc.perform(put("/l10n/l10n/entry/7").contentType(MediaType.APPLICATION_JSON)
-				.content("{\"locale\": \"EN\",\"lic\": \"test.third\",\"value\": \"test\", \"active\":true }"))
-				.andExpect(status().isOk());}
+		mvc.perform(put("/l10n/l10n/entry/test.test").contentType(MediaType.APPLICATION_JSON)
+				.content("{\"active\":true,\"values\":[{\"localeName\":\"EN\",\"value\":\"testhkj\"}]}")).andExpect(status().isOk());
+	}
 
 }
