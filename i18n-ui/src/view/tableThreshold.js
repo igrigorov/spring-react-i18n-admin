@@ -4,6 +4,7 @@ import {Checkbox, FormControlLabel, Switch, TextField} from "@material-ui/core";
 import {Component, useState} from "react";
 import MaterialTable from "material-table";
 import {TextFields} from "@material-ui/icons";
+import {forEach, keys, values} from "ramda";
 
 
 
@@ -24,43 +25,54 @@ let rows = [
 
 export default function Sample() {
 
-	const [checked, setChecked] = React.useState(true);
+//	const [checked, setChecked] = React.useState(true);
 
-	const handleChange = (event, data) => {
+	const [data, setData] = React.useState([]);
+
+	React.useEffect(() => {
+		fetch("http://localhost:8080/l10n/l10n")
+			.then((response => response.json()))
+			.then((json) => {
+				let temp = [];
+				json.map((o) => {
+					let find = false;
+					let constructor = false;
+					if (temp.length === 0) {
+						temp.push({
+							lic: o.lic,
+							active: o.active,
+							[o.locale]: o.value
+						})
+						constructor = true;
+					} else {
+						for (let i = 0; i < temp.length; i++) {
+							if (temp[i].lic === o.lic) {
+								find = true;
+								temp[i].[o.locale] = o.value;
+							}
+
+						}
+					}
+					if (!find && !constructor) temp.push({
+						lic: o.lic,
+						active: o.active,
+						[o.locale]: o.value
+					})
+				})
+				return setData(temp)
+			})
+	}, [])
+
+	/*const handleChange = (event, data) => {
 		setChecked(!data);
 		console.log(event.target.checked, data);
-	};
-
-	let columns = [
-		{
-			title: "Active",
-			field: "active",
-			render: (data) => (
-				console.log(data),
-					<Checkbox
-						checked={data.active}
-						onChange={(e, data) => handleChange(e, data)}
-						inputProps={{'aria-label': 'primary checkbox',}}
-						color="primary"
-					/>
-			)
-		},
-		{title: "lic", field: "lic"},
-		{
-			title: "BG", field: "BG", render: (data) => (
-				<TextField defaultValue={data.BG}/>)
-		},
-		{
-			title: "EN", field: "EN", render: (data) => (
-				<TextField defaultValue={data.EN}/>)
-		}
-	];
+	};*/
 
 
 	return (
 		<MaterialTable
-			columns={columns}
-			data={rows}
+			//columns={columns}
+			//data={rows}
 			title={""}
 			options={{
 				search: true,
