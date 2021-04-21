@@ -1,42 +1,25 @@
 import * as React from 'react';
-import {DataGrid} from '@material-ui/data-grid';
-import {Checkbox, FormControlLabel, Switch, TextField} from "@material-ui/core";
-import {Component, useState} from "react";
+import {Checkbox, TextField} from "@material-ui/core";
 import MaterialTable from "material-table";
-import {TextFields} from "@material-ui/icons";
-import {forEach, keys, values} from "ramda";
-
-
-
-let rows = [
-	{
-		active: true,
-		lic: "test",
-		BG: "София",
-		EN: "Sofia"
-	},
-	{
-		active: false,
-		lic: "test2",
-		BG: "София",
-		EN: "Sofia"
-	}];
-
 
 export default function Sample() {
 
-//	const [checked, setChecked] = React.useState(true);
+	const [checked, setChecked] = React.useState(true);
 
 	const [data, setData] = React.useState([]);
+
+	const [headers, setHeaders] = React.useState([]);
 
 	React.useEffect(() => {
 		fetch("http://localhost:8080/l10n/l10n")
 			.then((response => response.json()))
 			.then((json) => {
 				let temp = [];
+				let tempHeader = [];
 				json.map((o) => {
 					let find = false;
 					let constructor = false;
+
 					if (temp.length === 0) {
 						temp.push({
 							lic: o.lic,
@@ -53,26 +36,51 @@ export default function Sample() {
 
 						}
 					}
+					if (!tempHeader.includes(o.locale)) tempHeader.push(o.locale);
 					if (!find && !constructor) temp.push({
 						lic: o.lic,
 						active: o.active,
 						[o.locale]: o.value
 					})
 				})
+				setHeaders(tempHeader);
 				return setData(temp)
 			})
 	}, [])
 
-	/*const handleChange = (event, data) => {
+	const handleChange = (event, data) => {
 		setChecked(!data);
-		console.log(event.target.checked, data);
-	};*/
+		//console.log(event.target.checked, data);
+	};
+	let columns = [
+		{
+			title: "Active",
+			field: "active",
+			render: (data) => (
+				<Checkbox
+					checked={data.active}
+					onChange={(e, data) => handleChange(e, data)}
+					inputProps={{'aria-label': 'primary checkbox',}}
+					color="primary"
+				/>
+			)
+		},
+		{title: "lic", field: "lic"},
 
+	];
 
+	if (headers.length > 0) {
+		for (let i = 0; i < headers.length; i++) {
+			columns.push({
+				title: headers[i], field: headers[i], /*render: () => (
+					<TextField defaultValue={data.[headers[i]]}/>)*/
+			});
+		}
+	}
 	return (
 		<MaterialTable
-			//columns={columns}
-			//data={rows}
+			columns={columns}
+			data={data}
 			title={""}
 			options={{
 				search: true,
