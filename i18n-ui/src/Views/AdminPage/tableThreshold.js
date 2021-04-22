@@ -48,18 +48,20 @@ export default function Sample() {
 			})
 	}, [])
 
-	const handleChange = (event, data) => {
-		setChecked(!data);
-		//console.log(event.target.checked, data);
+	const handleChange = (event) => (row) => {
+		console.log(row, data);
+		//setData(data[row.tableData.id].active=event.target.checked);
+		console.log(data);
 	};
+
 	let columns = [
 		{
 			title: "Active",
 			field: "active",
-			render: (data) => (
+			render: (row) => (
 				<Checkbox
-					checked={data.active}
-					onChange={(e, data) => handleChange(e, data)}
+					checked={row.active}
+					onChange={(e) => handleChange(e)(row)}
 					inputProps={{'aria-label': 'primary checkbox',}}
 					color="primary"
 				/>
@@ -72,8 +74,8 @@ export default function Sample() {
 	if (headers.length > 0) {
 		for (let i = 0; i < headers.length; i++) {
 			columns.push({
-				title: headers[i], field: headers[i], /*render: () => (
-					<TextField defaultValue={data.[headers[i]]}/>)*/
+				title: headers[i], field: headers[i], render: (row) => (
+					<TextField defaultValue={row[headers[i]]}/>)
 			});
 		}
 	}

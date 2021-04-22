@@ -1,5 +1,5 @@
 import './App.css';
-import Sample from "./view";
+import Sample from "./Views/AdminPage";
 import {Button, Switch} from "@material-ui/core";
 import React from 'react'
 import APIOperations from './Networking/API/l10nAPI'
