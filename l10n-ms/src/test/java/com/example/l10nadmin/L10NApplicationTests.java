@@ -7,7 +7,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import static org.hamcrest.Matchers.hasKey;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -41,14 +40,26 @@ class L10NApplicationTests {
 	@DisplayName("insert new entry")
 	public void insertNewEntry() throws Exception {
 		mvc.perform(post("/l10n/l10n/entry").contentType(MediaType.APPLICATION_JSON)
-		.content("{\"locale\": \"GR\",\"lic\": \"test.third\",\"value\": \"test\" }"))
-	.andExpect(status().isOk());}
+			.content("""
+				{
+					"locale": "GR",
+					"lic": "test.third",
+					"value": "test"
+				}"""))
+			.andExpect(status().isOk());}
 
 	@Test
 	@DisplayName("replace existing entry")
 	public void replaceEntry() throws Exception {
 		mvc.perform(put("/l10n/l10n/entry/test.test").contentType(MediaType.APPLICATION_JSON)
-				.content("{\"active\":true,\"values\":[{\"localeName\":\"EN\",\"value\":\"testhkj\"}]}")).andExpect(status().isOk());
+				.content("""
+					{
+						"active":true,
+						"values": [
+							{ "localeName": "EN", "value": "test123" }
+						]
+					}"""))
+				.andExpect(status().isOk());
 	}
 
 }
