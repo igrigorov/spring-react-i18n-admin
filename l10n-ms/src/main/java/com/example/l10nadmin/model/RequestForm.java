@@ -1,10 +1,10 @@
-package com.example.l10nadmin.domain;
+package com.example.l10nadmin.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data // = @ToString, @EqualsAndHashCode, @Getter, @Setter and @RequiredArgsConstructor
-public class requestForm {
+public class RequestForm {
 
 	@ApiModelProperty(required = true)
 	private String locale;

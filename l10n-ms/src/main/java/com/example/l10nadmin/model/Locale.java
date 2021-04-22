@@ -1,4 +1,4 @@
-package com.example.l10nadmin.domain;
+package com.example.l10nadmin.model;
 
 import lombok.Data;
 

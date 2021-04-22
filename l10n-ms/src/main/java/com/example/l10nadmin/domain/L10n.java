@@ -25,40 +25,32 @@ public class L10n {
 	/**
 	 * Language code of the l10n entry, e.g. EN, BG
 	 */
-	@Column
 	private String locale;
 	/**
 	 * Language Independent Code of the l10n entry
 	 */
-	@Column
 	private String lic;
-	@Column
 	private String value;
 	/**
 	 * Whether the entry is active or not (if not, will not be returned by the app
 	 */
-	@Column
 	private boolean active;
 
 	/**
 	 * Username of the person who created the entry (XXX : needs some sort of authentication)
 	 */
-	@Column
 	private String createdBy;
 	/**
 	 * Timestamp when the entry was created
 	 */
-	@Column
 	private LocalDateTime createdOn;
 	/**
 	 * Username of the person who last modified the entry (XXX : needs some sort of authentication)
 	 */
-	@Column
 	private String modifiedBy;
 	/**
 	 * Timestamp when the entry was last modified
 	 */
-	@Column
 	private LocalDateTime modifiedOn;
 
 }
