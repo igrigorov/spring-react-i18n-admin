@@ -1,0 +1,36 @@
+### Get localizations by locale
+GET http://localhost:8080/l10n/locale/BG
+
+<> 2021-04-09T151609.200.json
+<> 2021-04-05T122221.200.json
+<> 2021-04-05T120557.200.json
+<> 2021-04-05T120544.404.json
+<> 2021-04-02T152315.404.json
+<> 2021-04-02T152309.200.json
+<> 2021-04-02T152259.200.json
+<> 2021-04-02T152221.200.json
+<> 2021-04-02T152138.404.json
+<> 2021-04-02T150404.200.json
+<> 2021-04-02T145549.500.json
+<> 2021-04-02T134332.200.json
+<> 2021-04-01T230000.200.json
+<> 2021-04-01T225501.200.json
+<> 2021-04-01T225027.200.json
+<> 2021-04-01T224853.200.json
+
+### Admin: Get all localization entries
+
+GET http://localhost:8080/l10n/l10n
+
+<> 2021-04-15T164413.200.json
+
+### Admin: Create entry
+POST http://localhost:8080/l10n/l10n/entry
+Content-Type: application/json
+
+{
+    "locale": "GR",
+    "lic": "test.test",
+    "value": "τεστ",
+    "active": true
+}
