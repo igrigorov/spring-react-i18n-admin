@@ -113,19 +113,6 @@
 
 	<build>
 		<plugins>
-			<!--	<plugin>-->
-			<!--		<groupId>org.springframework.boot</groupId>-->
-			<!--		<artifactId>spring-boot-maven-plugin</artifactId>-->
-			<!--		<configuration>-->
-			<!--			<excludes>-->
-			<!--				<exclude>-->
-			<!--					<groupId>org.projectlombok</groupId>-->
-			<!--					<artifactId>lombok</artifactId>-->
-			<!--				</exclude>-->
-			<!--			</excludes>-->
-			<!--		</configuration>-->
-			<!--	</plugin>-->
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -181,6 +168,8 @@
 				<version>3.0.0</version>
 				<executions>
 					<execution>
+						<!-- ID to match when disabling this in no-toolchains profile -->
+						<id>toolchains</id>
 						<goals>
 							<goal>toolchain</goal>
 						</goals>
@@ -197,5 +186,27 @@
 
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>no-toolchains</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-toolchains-plugin</artifactId>
+						<version>3.0.0</version>
+						<executions>
+							<execution>
+								<id>toolchains</id>
+								<!-- Disable the toolchains lookup by its ID above -->
+								<phase>none</phase>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>

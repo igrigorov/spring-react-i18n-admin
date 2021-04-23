@@ -7,7 +7,7 @@ Backend implemented in Spring Boot with JPA. DB is H2, just for sample purposes.
 Implementation stack (the latest possible to date):
 * Spring Boot 2.5.0-M3
 * React 17.0.2
-* Java 16 (with a baad workaround in the maven-compiler plugin in order for Lombok to work)
+* Java 16 (with an uugly workaround in the maven-compiler plugin in order for Lombok to work)
 
 # Getting Started
 
