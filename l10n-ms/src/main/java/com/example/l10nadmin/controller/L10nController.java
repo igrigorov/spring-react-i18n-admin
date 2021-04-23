@@ -1,7 +1,6 @@
 package com.example.l10nadmin.controller;
 
 import com.example.l10nadmin.model.L10nDto;
-import com.example.l10nadmin.model.RequestForm;
 import com.example.l10nadmin.model.RequestUpdateEntryForm;
 import com.example.l10nadmin.service.L10nService;
 import io.swagger.annotations.*;
@@ -44,7 +43,7 @@ public class L10nController {
 	@ApiOperation("Creates a new entry")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successful"), @ApiResponse(code = 401, message = "Unauthorized"),
 			@ApiResponse(code = 500, message = "System Error") })
-	public ResponseEntity<L10nDto> postNewEntry(@RequestBody RequestForm form) {
+	public ResponseEntity<L10nDto> postNewEntry(@RequestBody L10nDto form) {
 		LOG.info("Create new entry with value" + form.toString());
 		return ResponseEntity.ok(l10nService.createNewEntry(form));
 	}

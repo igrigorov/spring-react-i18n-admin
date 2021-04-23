@@ -4,7 +4,6 @@ import com.example.l10nadmin.domain.*;
 import com.example.l10nadmin.mapper.L10nMapper;
 import com.example.l10nadmin.model.L10nDto;
 import com.example.l10nadmin.model.Locale;
-import com.example.l10nadmin.model.RequestForm;
 import com.example.l10nadmin.model.RequestUpdateEntryForm;
 import com.example.l10nadmin.repository.L10nRepository;
 import lombok.RequiredArgsConstructor;
@@ -42,7 +41,7 @@ public class L10nService {
 	}
 
 	@Transactional
-	public L10nDto createNewEntry(RequestForm form) {
+	public L10nDto createNewEntry(L10nDto form) {
 		try {
 			L10n newEntry = l10nMapper.toL10n(form);
 			newEntry.setCreatedOn(LocalDateTime.now());
