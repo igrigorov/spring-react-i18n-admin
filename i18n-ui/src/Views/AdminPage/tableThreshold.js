@@ -12,37 +12,37 @@ export default function AdminTable() {
 		fetch("http://localhost:8080/l10n/l10n")
 			.then((response => response.json()))
 			.then((json) => {
-				let temp = [];
+				let tableData = [];
 				let tempHeader = [];
-				json.map((o) => {
+				json.map((entry) => {
 					let find = false;
-					let constructor = false;
 
-					if (temp.length === 0) {
-						temp.push({
-							lic: o.lic,
-							active: o.active,
-							[o.locale]: o.value
+					if (tableData.length === 0) {
+						tableData.push({
+							lic: entry.lic,
+							active: entry.active,
+							[entry.locale]: entry.value
 						})
-						constructor = true;
+						find = true;
 					} else {
-						for (let i = 0; i < temp.length; i++) {
-							if (temp[i].lic === o.lic) {
+						tableData.forEach(item => {
+							if (item.lic === entry.lic) {
 								find = true;
-								temp[i][o.locale] = o.value;
+								item[entry.locale] = entry.value;
 							}
-
-						}
+						});
 					}
-					if (!tempHeader.includes(o.locale)) tempHeader.push(o.locale);
-					if (!find && !constructor) temp.push({
-						lic: o.lic,
-						active: o.active,
-						[o.locale]: o.value
-					})
+					if (!tempHeader.includes(entry.locale))
+						tempHeader.push(entry.locale);
+					if (!find)
+						tableData.push({
+							lic: entry.lic,
+							active: entry.active,
+							[entry.locale]: entry.value
+						})
 				})
 				setHeaders(tempHeader);
-				return setData(temp)
+				return setData(tableData)
 			})
 	}, [])
 
