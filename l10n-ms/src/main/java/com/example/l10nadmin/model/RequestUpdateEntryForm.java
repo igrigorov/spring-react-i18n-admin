@@ -1,11 +1,11 @@
-package com.example.l10nadmin.domain;
+package com.example.l10nadmin.model;
 
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class requestUpdateEntryForm {
+public class RequestUpdateEntryForm {
 
 	boolean active;
 	List<Locale> values;

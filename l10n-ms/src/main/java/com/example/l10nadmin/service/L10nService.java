@@ -2,6 +2,9 @@ package com.example.l10nadmin.service;
 
 import com.example.l10nadmin.domain.*;
 import com.example.l10nadmin.mapper.L10nMapper;
+import com.example.l10nadmin.model.L10nDto;
+import com.example.l10nadmin.model.Locale;
+import com.example.l10nadmin.model.RequestUpdateEntryForm;
 import com.example.l10nadmin.repository.L10nRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,18 +36,14 @@ public class L10nService {
 				.collect(Collectors.toMap(L10n::getLic, L10n::getValue));
 	}
 
-	public List<L10n> findAll() {
-		return l10nRepository.findAll();
+	public List<L10nDto> findAll() {
+		return l10nMapper.toL10nDTOs(l10nRepository.findAll());
 	}
 
 	@Transactional
-	public L10nDto createNewEntry(requestForm form) {
+	public L10nDto createNewEntry(L10nDto form) {
 		try {
-			L10n newEntry = new L10n();
-			newEntry.setValue(form.getValue());
-			newEntry.setLocale(form.getLocale());
-			newEntry.setActive(form.isActive());
-			newEntry.setLic(form.getLic());
+			L10n newEntry = l10nMapper.toL10n(form);
 			newEntry.setCreatedOn(LocalDateTime.now());
 			newEntry.setModifiedOn(LocalDateTime.now());
 			newEntry.setCreatedBy("SUPERPALAV");
@@ -57,7 +56,7 @@ public class L10nService {
 	}
 
 	@Transactional
-	public void updateEntry(String lic, requestUpdateEntryForm form) {
+	public void updateEntry(String lic, RequestUpdateEntryForm form) {
 		try {
 			for (Locale loc : form.getValues()) {
 				l10nRepository.updateExistingEntry(lic, loc.getLocaleName(), loc.getValue(), form.isActive(), LocalDateTime.now());
