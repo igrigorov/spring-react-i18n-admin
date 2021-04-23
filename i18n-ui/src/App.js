@@ -1,8 +1,6 @@
 import './App.css';
-import Sample from "./Views/AdminPage";
-import {Button, Switch} from "@material-ui/core";
 import React from 'react'
-import APIOperations from './Networking/API/l10nAPI'
+import AdminPage from "./Views/AdminPage";
 
 
 function App() {
@@ -10,7 +8,7 @@ function App() {
 	return (
 		<div className="table">
 			<h1 align="center">Internationalization Administration</h1>
-			<Sample/>
+			<AdminPage/>
 		</div>
 
 	);

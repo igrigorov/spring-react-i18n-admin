@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
-import DataTable from "./tableThreshold";
+import AdminTable from "./tableThreshold";
 
-class Sample extends Component{
+class AdminPage extends Component {
 
-	render(){
-		return <DataTable/>
+	render() {
+		return <AdminTable/>
 	}
 }
 
-export default Sample;
+export default AdminPage;
 

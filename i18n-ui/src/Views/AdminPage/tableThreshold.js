@@ -2,9 +2,7 @@ import * as React from 'react';
 import {Checkbox, TextField} from "@material-ui/core";
 import MaterialTable from "material-table";
 
-export default function Sample() {
-
-	const [checked, setChecked] = React.useState(true);
+export default function AdminTable() {
 
 	const [data, setData] = React.useState([]);
 
@@ -31,7 +29,7 @@ export default function Sample() {
 						for (let i = 0; i < temp.length; i++) {
 							if (temp[i].lic === o.lic) {
 								find = true;
-								temp[i].[o.locale] = o.value;
+								temp[i][o.locale] = o.value;
 							}
 
 						}
@@ -49,9 +47,9 @@ export default function Sample() {
 	}, [])
 
 	const handleChange = (event) => (row) => {
-		console.log(row, data);
-		//setData(data[row.tableData.id].active=event.target.checked);
-		console.log(data);
+		let temp = data;
+		temp[row.tableData.id].active = event.target.checked;
+		setData({...data, ...temp});
 	};
 
 	let columns = [
