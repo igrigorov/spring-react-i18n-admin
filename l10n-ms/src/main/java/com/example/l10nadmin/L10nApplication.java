@@ -13,7 +13,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author Ivan Grigorov
  * @version 2021.04.01
  */
-// TODO : Make test
 @SpringBootApplication
 public class L10nApplication {
 
