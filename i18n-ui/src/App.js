@@ -1,11 +1,15 @@
 import './App.css';
-import Sample from "./view";
+import React from 'react'
+import AdminPage from "./Views/AdminPage";
+
 
 function App() {
+
 	return (
-			<div className="table">
-				<Sample/>
-			</div>
+		<div className="table">
+			<h1 align="center">Internationalization Administration</h1>
+			<AdminPage/>
+		</div>
 
 	);
 }

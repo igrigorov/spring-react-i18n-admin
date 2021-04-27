@@ -1,6 +1,6 @@
 package com.example.l10nadmin.service;
 
-import com.example.l10nadmin.domain.*;
+import com.example.l10nadmin.domain.L10n;
 import com.example.l10nadmin.mapper.L10nMapper;
 import com.example.l10nadmin.model.L10nDto;
 import com.example.l10nadmin.model.Locale;
@@ -50,7 +50,7 @@ public class L10nService {
 			newEntry.setModifiedBy("SUPERPALAV");
 			return l10nMapper.toL10nDTO(l10nRepository.save(newEntry));
 		} catch (Exception e) {
-			LOG.error("Error during save {}:", e);
+			LOG.error("Error during creation of {}", form, e);
 			throw e;
 		}
 	}
@@ -62,7 +62,7 @@ public class L10nService {
 				l10nRepository.updateExistingEntry(lic, loc.getLocaleName(), loc.getValue(), form.isActive(), LocalDateTime.now());
 			}
 		} catch (Exception e) {
-			LOG.error("Error during update {}:", e);
+			LOG.error("Error during update of {}", form, e);
 			throw e;
 		}
 	}
