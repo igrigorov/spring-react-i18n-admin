@@ -2,22 +2,16 @@ import React, {Component} from 'react'
 import {
 	Button,
 	FormControl,
-	FormHelperText,
 	InputLabel,
 	MenuItem,
-	NativeSelect,
 	Select,
 	TextareaAutosize,
 	TextField
 } from "@material-ui/core";
 import {Link} from "react-router-dom";
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import {TextArea} from "semantic-ui-react";
 
-const options = [
-	'one', 'two', 'three'
-];
-const defaultOption = options[0];
 
 class SamplePage extends Component {
 
@@ -48,13 +42,13 @@ class SamplePage extends Component {
 				</div>
 				<div style={{
 					display: 'flex', flexDirection: 'row', justifyContent: 'space-around',
-					alignItems: 'center', width: '100%'
+					width: '100%'
 				}}>
 					<div style={{
 						display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
-						width: '50%', marginBottom: '20px'
+						width: '15%', marginBottom: '20px'
 					}}>
-						<FormControl variant="outlined" style={{width: '28%', marginBottom: '20px'}}>
+						<FormControl variant="outlined" style={{width: '35%', marginBottom: '20px'}}>
 							<InputLabel id="demo-simple-select-outlined-label">Dropdown</InputLabel>
 							<Select
 								labelId="demo-simple-select-outlined-label"
@@ -65,12 +59,10 @@ class SamplePage extends Component {
 								<MenuItem value="">
 									<em>None</em>
 								</MenuItem>
-								<MenuItem value={10}>Ten</MenuItem>
-								<MenuItem value={20}>Twenty</MenuItem>
-								<MenuItem value={30}>Thirty</MenuItem>
+								<MenuItem value={10}>Medium</MenuItem>
 							</Select>
 						</FormControl>
-						<FormControl variant="outlined" style={{width: '28%', marginBottom: '20px'}}>
+						<FormControl variant="outlined" style={{width: '35%', marginBottom: '20px'}}>
 							<InputLabel id="demo-simple-select-outlined-label">Dropdown</InputLabel>
 							<Select
 								labelId="demo-simple-select-outlined-label"
@@ -81,13 +73,19 @@ class SamplePage extends Component {
 								<MenuItem value="">
 									<em>None</em>
 								</MenuItem>
-								<MenuItem value={10}>Ten</MenuItem>
-								<MenuItem value={20}>Twenty</MenuItem>
-								<MenuItem value={30}>Thirty</MenuItem>
+								<MenuItem value={10}>Medium</MenuItem>
 							</Select>
 						</FormControl>
 					</div>
-					<TextareaAutosize></TextareaAutosize>
+					<div style={{
+						display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
+						marginBottom: '20px', alignItems: 'end', width: '80'
+					}}>
+						<form>
+							<TextareaAutosize style={{minHeight: 130, width: 730, alignItems: "left"}}
+											  defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit"/>
+						</form>
+					</div>
 				</div>
 				<div></div>
 				<div></div>
