@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import AdminTable from "./tableThreshold";
+import AdminTable from "./table";
 
 class AdminPage extends Component {
 
