@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Button, Checkbox, TextField} from "@material-ui/core";
 import MaterialTable from "material-table";
 import {useTranslation} from 'react-i18next';
+
 export default function AdminTable() {
 
 	const [data, setData] = React.useState([]);
@@ -48,11 +49,19 @@ export default function AdminTable() {
 			})
 	}, [])
 
-	const handleChange = (event) => (row) => {
+	const handleChangeCheckbox = (event) => (row) => {
 		let temp = data;
 		temp[row.tableData.id].active = event.target.checked;
 		setData({...data, ...temp});
 	};
+
+	const handleChangeTextfield = (event) => (row) => {
+		/*let temp = data;
+		temp[row.tableData.id].active = event.target.checked;
+		setData({...data, ...temp});*/
+		console.log(row);
+	};
+
 
 	let columns = [
 		{
@@ -61,7 +70,7 @@ export default function AdminTable() {
 			render: (row) => (
 				<Checkbox
 					checked={row.active}
-					onChange={(e) => handleChange(e)(row)}
+					onChange={(e) => handleChangeCheckbox(e)(row)}
 					inputProps={{'aria-label': 'primary checkbox',}}
 					color="primary"
 				/>
@@ -75,7 +84,8 @@ export default function AdminTable() {
 		for (let i = 0; i < headers.length; i++) {
 			columns.push({
 				title: headers[i], field: headers[i], render: (row) => (
-					<TextField defaultValue={row[headers[i]]}/>)
+					<TextField onChange={(e) => handleChangeCheckbox(e)(row)}
+							   defaultValue={row[headers[i]]}/>)
 			});
 		}
 	}
