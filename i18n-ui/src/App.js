@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react'
 import AdminPage from "./Views/AdminPage";
-import {BrowserRouter as Router, Route, Redirect, Switch, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom";
 import SamplePage from "./Views/Sample";
 import NotFoundPage from "./Views/NotFoundPage";
 
