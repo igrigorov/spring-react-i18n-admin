@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Checkbox, TextField} from "@material-ui/core";
+import {Button, Checkbox, TextField} from "@material-ui/core";
 import MaterialTable from "material-table";
 import {useTranslation} from 'react-i18next';
 export default function AdminTable() {
@@ -79,6 +79,9 @@ export default function AdminTable() {
 			});
 		}
 	}
+	columns.push({
+		title: "", field: "save", render: () => (<Button style={{textTransform: 'none'}} variant="contained" disabled>Save</Button>)
+	})
 	return (
 		<MaterialTable
 			columns={columns}
