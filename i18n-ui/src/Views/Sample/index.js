@@ -1,19 +1,28 @@
 import React from 'react'
 import {
-	Button, Checkbox,
-	FormControl, FormControlLabel, FormGroup, FormLabel, Icon,
+	Button,
+	Checkbox,
+	FormControl,
+	FormControlLabel,
+	FormGroup,
+	FormLabel,
+	Icon,
 	InputLabel,
-	MenuItem, Radio, RadioGroup,
-	Select, Switch,
+	MenuItem,
+	Radio,
+	RadioGroup,
+	Select,
+	Switch,
 	TextField
 } from "@material-ui/core";
 import {Link} from "react-router-dom";
 import 'react-dropdown/style.css';
+import "../../index.css";
 import {TextArea} from "semantic-ui-react";
 import CancelIcon from '@material-ui/icons/Cancel';
 import {AccountBox} from "@material-ui/icons";
 import {useTranslation} from 'react-i18next';
-import {changeLanguage} from "../../language/i18n";
+import {changeLanguage, locales} from "../../language/i18n";
 
 export default function SamplePage() {
 
@@ -27,9 +36,13 @@ export default function SamplePage() {
 				display: 'flex', flexDirection: 'row', justifyContent: 'space-around',
 				alignItems: 'center', width: '100%', marginBottom: '20px'
 			}}>
+				{/*
+				  * Show language selectors
+				  */}
 				<div style={{display: 'flex', width: '15%',}}>
-					<Button variant="contained" onClick={() => changeLanguage("EN")}>EN</Button>
-					<Button variant="contained" onClick={() => changeLanguage("BG")}>BG</Button>
+					{Object.entries(locales).map((localeKVPair) => {
+						return <Button variant="contained" onClick={() => changeLanguage(localeKVPair[1])}>{localeKVPair[1]}</Button>;
+					})}
 				</div>
 				<div style={{display: 'flex', width: '70%', alignItems: 'center', justifyContent: 'space-around'}}>
 					<h1>{t('sample.title')}</h1>
@@ -48,17 +61,17 @@ export default function SamplePage() {
 					display: 'flex', flexDirection: 'row', justifyContent: 'space-around',
 					alignItems: 'center', width: '100%', marginBottom: '20px'
 				}}>
-					<TextField label={t("sample.textField")} defaultValue={t("sample.medium")} variant="outlined"/>
-					<TextField label={t("sample.textField")} defaultValue={t("sample.medium")} variant="outlined"/>
-					<TextField label={t("sample.textField")} defaultValue={t("sample.medium")} variant="outlined"/>
+					<TextField label={t("sample.textField")} variant="outlined"/>
+					<TextField label={t("sample.textField")} variant="outlined"/>
+					<TextField label={t("sample.textField")} variant="outlined"/>
 				</div>
 				<div style={{
 					display: 'flex', flexDirection: 'row', justifyContent: 'space-around',
 					alignItems: 'center', width: '100%'
 				}}>
-					<TextField label={t("sample.textField")} defaultValue={t("sample.medium")} variant="outlined"/>
-					<TextField label={t("sample.textField")} defaultValue={t("sample.medium")} variant="outlined"/>
-					<TextField label={t("sample.textField")} defaultValue={t("sample.medium")} variant="outlined"/>
+					<TextField label={t("sample.textField")} variant="outlined"/>
+					<TextField label={t("sample.textField")} variant="outlined"/>
+					<TextField label={t("sample.textField")} variant="outlined"/>
 				</div>
 			</div>
 			<div style={{
@@ -120,8 +133,8 @@ export default function SamplePage() {
 						display: 'flex', flexDirection: 'column', justifyContent: 'space-around',
 						alignItems: 'center', width: '100%', marginBottom: '20px'
 					}}>
-						<FormControl color="secondary" variant="outlined" style={{backgroundColor: '#E0EAFF'}}>
-							<FormLabel>{t("sample.radio")} {t("sample.group")}</FormLabel>
+						<FormControl color="secondary" variant="outlined" class={"controlGroup"}>
+							<FormLabel>{t("sample.radioGroup")}</FormLabel>
 							<RadioGroup value={"option1"}>
 								<FormControlLabel
 									control={<Radio/>}
@@ -145,8 +158,8 @@ export default function SamplePage() {
 						display: 'flex', flexDirection: 'column', justifyContent: 'space-around',
 						alignItems: 'center', width: '100%', marginBottom: '20px'
 					}}>
-						<FormControl color="secondary" variant="outlined" style={{backgroundColor: '#E0EAFF'}}>
-							<FormLabel>{t("sample.checkBox")} {t("sample.group")}</FormLabel>
+						<FormControl color="secondary" variant="outlined" class={"controlGroup"}>
+							<FormLabel>{t("sample.checkBoxGroup")}</FormLabel>
 							<FormGroup>
 								<FormControlLabel
 									control={<Checkbox checked={true} name="choice1"/>}
@@ -167,8 +180,8 @@ export default function SamplePage() {
 						display: 'flex', flexDirection: 'column', justifyContent: 'space-around',
 						alignItems: 'center', width: '100%', marginBottom: '20px'
 					}}>
-						<FormControl color="secondary" variant="outlined" style={{backgroundColor: '#E0EAFF'}}>
-							<FormLabel aria-grabbed={true}>{t("sample.toggle")} {t("sample.switch")} {t("sample.group")}</FormLabel>
+						<FormControl color="secondary" variant="outlined" class={"controlGroup"}>
+							<FormLabel aria-grabbed={true}>{t("sample.toggleSwitchGroup")}</FormLabel>
 							<FormGroup>
 								<FormControlLabel
 									control={<Switch checked={true} name="on1"/>}
@@ -197,6 +210,6 @@ export default function SamplePage() {
 				<div><Button variant="contained" color="primary" endIcon={<Icon>send</Icon>}>{t("sample.submit")}</Button></div>
 			</div>
 		</div>
-	)
+	);
 }
 

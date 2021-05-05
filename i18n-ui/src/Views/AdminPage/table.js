@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Checkbox, TextField} from "@material-ui/core";
 import MaterialTable from "material-table";
 import {useTranslation} from 'react-i18next';
+
 export default function AdminTable() {
 
 	const [data, setData] = React.useState([]);
@@ -16,7 +17,7 @@ export default function AdminTable() {
 			.then((json) => {
 				let tableData = [];
 				let tempHeader = [];
-				json.map((entry) => {
+				json.forEach((entry) => {
 					let find = false;
 
 					if (tableData.length === 0) {
