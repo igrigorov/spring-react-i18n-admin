@@ -68,8 +68,7 @@ export default function AdminTable() {
 				/>
 			)
 		},
-		{title: "lic", field: "lic"},
-
+		{title: "LIC", field: "lic"}
 	];
 
 	if (headers.length > 0) {
