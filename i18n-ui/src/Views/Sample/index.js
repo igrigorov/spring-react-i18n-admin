@@ -91,7 +91,7 @@ export default function SamplePage() {
 							label={t("sample.dropdown")}
 						>
 							<MenuItem value="">
-								<em>None</em>
+								<em>{t("sample.none")}</em>
 							</MenuItem>
 							<MenuItem value={10}>{t("sample.medium")}</MenuItem>
 						</Select>
@@ -105,7 +105,7 @@ export default function SamplePage() {
 							label={t("sample.dropdown")}
 						>
 							<MenuItem value="">
-								<em>None</em>
+								<em>{t("sample.none")}</em>
 							</MenuItem>
 							<MenuItem value={10}>{t("sample.medium")}</MenuItem>
 						</Select>
