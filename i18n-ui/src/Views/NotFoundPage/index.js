@@ -2,7 +2,9 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 
 class NotFoundPage extends Component {
-
+	/**
+	 *Default error page that redirects to main page
+	 */
 	render() {
 		return (
 			<div>

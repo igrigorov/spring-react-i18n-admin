@@ -3,7 +3,9 @@ import {initReactI18next} from 'react-i18next';
 
 import Backend from 'i18next-http-backend';
 
-
+/**
+ *The languages/locales for i18n to change
+ */
 export const locales = {
 	en: 'en',
 	bg: 'bg'

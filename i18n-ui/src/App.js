@@ -6,7 +6,9 @@ import SamplePage from "./Views/Sample";
 import NotFoundPage from "./Views/NotFoundPage";
 
 function App() {
-
+	/**
+	 * Set the routes for the pages
+	 */
 	return (
 		<Router>
 			<Switch>

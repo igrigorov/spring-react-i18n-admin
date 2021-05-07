@@ -17,6 +17,9 @@ export default function AdminPage() {
 			}}>
 				<div style={{display: 'flex', width: '15%',}}>
 					<Button variant="contained" startIcon={<ReplyIcon/>}>
+						{/*
+						 *Link/redirect to Main Page
+						 */}
 						<Link to="/">{t('admin.mainPage')}</Link>
 					</Button>
 				</div>

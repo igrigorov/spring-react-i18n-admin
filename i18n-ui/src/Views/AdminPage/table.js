@@ -11,6 +11,10 @@ export default function AdminTable() {
 
 	const [t] = useTranslation();
 
+	/**
+	 * Fetching all translations
+	 */
+
 	React.useEffect(() => {
 		fetch("http://localhost:8080/l10n/l10n")
 			.then((response => response.json()))
@@ -70,6 +74,10 @@ export default function AdminTable() {
 		},
 		{title: "LIC", field: "lic"}
 	];
+
+	/**
+	 * We dynamically add locale columns
+	 */
 
 	if (headers.length > 0) {
 		for (let i = 0; i < headers.length; i++) {
