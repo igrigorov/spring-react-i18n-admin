@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Checkbox, TextField} from "@material-ui/core";
 import MaterialTable from "material-table";
+import {useTranslation} from 'react-i18next';
 
 export default function AdminTable() {
 
@@ -8,13 +9,19 @@ export default function AdminTable() {
 
 	const [headers, setHeaders] = React.useState([]);
 
+	const [t] = useTranslation();
+
+	/**
+	 * Fetching all translations
+	 */
+
 	React.useEffect(() => {
 		fetch("http://localhost:8080/l10n/l10n")
 			.then((response => response.json()))
 			.then((json) => {
 				let tableData = [];
 				let tempHeader = [];
-				json.map((entry) => {
+				json.forEach((entry) => {
 					let find = false;
 
 					if (tableData.length === 0) {
@@ -54,7 +61,7 @@ export default function AdminTable() {
 
 	let columns = [
 		{
-			title: "Active",
+			title: t("admin.active"),
 			field: "active",
 			render: (row) => (
 				<Checkbox
@@ -65,9 +72,12 @@ export default function AdminTable() {
 				/>
 			)
 		},
-		{title: "lic", field: "lic"},
-
+		{title: "LIC", field: "lic"}
 	];
+
+	/**
+	 * Dynamically add locale columns
+	 */
 
 	if (headers.length > 0) {
 		for (let i = 0; i < headers.length; i++) {

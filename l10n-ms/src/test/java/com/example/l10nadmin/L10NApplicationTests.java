@@ -26,7 +26,7 @@ class L10NApplicationTests {
 		mvc.perform(get("/l10n/locale/en").contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$").value(hasKey("test.test")));
+				.andExpect(jsonPath("$").value(hasKey("sample.title")));
 	}
 
 	@Test
@@ -51,15 +51,13 @@ class L10NApplicationTests {
 	@Test
 	@DisplayName("replace existing entry")
 	public void replaceEntry() throws Exception {
-		mvc.perform(put("/l10n/l10n/entry/test.test").contentType(MediaType.APPLICATION_JSON)
-				.content("""
-					{
-						"active":true,
-						"values": [
-							{ "localeName": "EN", "value": "test123" }
-						]
-					}"""))
-				.andExpect(status().isOk());
+		mvc.perform(put("/l10n/l10n/entry/sample.title").contentType(MediaType.APPLICATION_JSON).content("""
+				{
+					"active":true,
+					"values": [
+						{ "localeName": "EN", "value": "test123" }
+					]
+				}""")).andExpect(status().isOk());
 	}
 
 }

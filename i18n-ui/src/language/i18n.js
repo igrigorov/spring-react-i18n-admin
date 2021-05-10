@@ -3,7 +3,9 @@ import {initReactI18next} from 'react-i18next';
 
 import Backend from 'i18next-http-backend';
 
-
+/**
+ *The languages/locales for i18n to change
+ */
 export const locales = {
 	en: 'en',
 	bg: 'bg'
@@ -36,10 +38,10 @@ const backendOptions = {
 	//
 	// If allowMultiLoading is false, lngs and namespaces will have only one element each,
 	// If allowMultiLoading is true, lngs and namespaces can have multiple elements
-	//loadPath: fullUrl(systemServiceUrl('/l10n/{{lng}}')),
+	loadPath: 'http://localhost:8080/l10n/locale/{{lng}}',
 
 	// path to post missing resources
-	addPath: '/l10n/add/{{lng}}',
+	addPath: 'http://localhost:8080/l10n/locale/{{lng}}',
 
 	// your backend server supports multiloading
 	// /locales/resources.json?lng=de+en&ns=ns1+ns2
