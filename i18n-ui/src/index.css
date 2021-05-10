@@ -17,3 +17,25 @@ code {
 	border-radius: 15px;
 	padding: 10px
 }
+
+/*
+ * Country flags section
+ */
+.flag-icon {
+	background-size: contain;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	position: relative;
+	display: inline-block;
+	width: 4em;
+	line-height: 3em;
+	margin: 10px;
+	border: solid 1px;
+	cursor: pointer;
+}
+.flag-icon-background {
+	background-size: contain;
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+

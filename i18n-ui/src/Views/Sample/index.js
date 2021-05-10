@@ -22,28 +22,21 @@ import {TextArea} from "semantic-ui-react";
 import CancelIcon from '@material-ui/icons/Cancel';
 import {AccountBox} from "@material-ui/icons";
 import {useTranslation} from 'react-i18next';
-import {changeLanguage, locales} from "../../language/i18n";
+import {LanguageHeader} from "../../components";
 
 export default function SamplePage() {
-
-
 
 	const [t] = useTranslation();
 
 	return (
 		<div>
+			<LanguageHeader/>
+
 			<div style={{
 				display: 'flex', flexDirection: 'row', justifyContent: 'space-around',
 				alignItems: 'center', width: '100%', marginBottom: '20px'
 			}}>
-				{/*
-				  * Show language selectors
-				  */}
-				<div style={{display: 'flex', width: '15%',}}>
-					{Object.entries(locales).map((localeKVPair) => {
-						return <Button variant="contained" onClick={() => changeLanguage(localeKVPair[1])}>{localeKVPair[1]}</Button>;
-					})}
-				</div>
+				<div style={{display: 'flex', width: '15%', justifyContent: 'space-around'}}/>
 				<div style={{display: 'flex', width: '70%', alignItems: 'center', justifyContent: 'space-around'}}>
 					<h1>{t('sample.title')}</h1>
 				</div>
