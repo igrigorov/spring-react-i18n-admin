@@ -19,7 +19,7 @@ VALUES
     (L10n_id_seq.nextval, 'sample.left', 'EN', 'Left'),
     (L10n_id_seq.nextval, 'sample.medium', 'BG', 'Средно'),
     (L10n_id_seq.nextval, 'sample.medium', 'EN', 'Medium'),
-    (L10n_id_seq.nextval, 'sample.none', 'BG', 'Нито един'),
+    (L10n_id_seq.nextval, 'sample.none', 'BG', 'Празно'),
     (L10n_id_seq.nextval, 'sample.none', 'EN', 'None'),
     (L10n_id_seq.nextval, 'sample.middle', 'BG', 'Средно'),
     (L10n_id_seq.nextval, 'sample.middle', 'EN', 'Middle'),

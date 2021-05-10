@@ -53,6 +53,9 @@ export default function SamplePage() {
 					</Button>
 				</div>
 			</div>
+			{/*
+			  * Sample Text boxes on top
+			  */}
 			<div style={{
 				display: 'flex', flexDirection: 'column', justifyContent: 'space-around',
 				alignItems: 'center', width: '100%', marginBottom: '20px'
@@ -74,6 +77,9 @@ export default function SamplePage() {
 					<TextField label={t("sample.textField")} variant="outlined"/>
 				</div>
 			</div>
+			{/*
+			  * Sample Select dropdowns
+			  */}
 			<div style={{
 				display: 'flex', flexDirection: 'row', justifyContent: 'space-around',
 				width: '100%',
@@ -111,6 +117,9 @@ export default function SamplePage() {
 						</Select>
 					</FormControl>
 				</div>
+				{/*
+				  * Sample Text area
+				  */}
 				<div style={{
 					display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
 					marginBottom: '20px', alignItems: 'center', width: '66%'
@@ -133,6 +142,9 @@ export default function SamplePage() {
 						display: 'flex', flexDirection: 'column', justifyContent: 'space-around',
 						alignItems: 'center', width: '100%', marginBottom: '20px'
 					}}>
+						{/*
+						  * Sample radio group
+						  */}
 						<FormControl color="secondary" variant="outlined" class={"controlGroup"}>
 							<FormLabel>{t("sample.radioGroup")}</FormLabel>
 							<RadioGroup value={"option1"}>
@@ -158,6 +170,9 @@ export default function SamplePage() {
 						display: 'flex', flexDirection: 'column', justifyContent: 'space-around',
 						alignItems: 'center', width: '100%', marginBottom: '20px'
 					}}>
+						{/*
+						  * Sample checkbox group
+						  */}
 						<FormControl color="secondary" variant="outlined" class={"controlGroup"}>
 							<FormLabel>{t("sample.checkBoxGroup")}</FormLabel>
 							<FormGroup>
@@ -180,6 +195,9 @@ export default function SamplePage() {
 						display: 'flex', flexDirection: 'column', justifyContent: 'space-around',
 						alignItems: 'center', width: '100%', marginBottom: '20px'
 					}}>
+						{/*
+						  * Sample toggle switch group
+						  */}
 						<FormControl color="secondary" variant="outlined" class={"controlGroup"}>
 							<FormLabel aria-grabbed={true}>{t("sample.toggleSwitchGroup")}</FormLabel>
 							<FormGroup>
@@ -200,6 +218,9 @@ export default function SamplePage() {
 					</div>
 				</div>
 			</div>
+			{/*
+			  * Footer buttons
+			  */}
 			<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
 				<div><Button variant={"outlined"} startIcon={<CancelIcon/>}>{t("sample.cancel")}</Button></div>
 				<div>

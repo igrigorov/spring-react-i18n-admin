@@ -76,7 +76,7 @@ export default function AdminTable() {
 	];
 
 	/**
-	 * We dynamically add locale columns
+	 * Dynamically add locale columns
 	 */
 
 	if (headers.length > 0) {
