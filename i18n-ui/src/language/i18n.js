@@ -3,7 +3,9 @@ import {initReactI18next} from 'react-i18next';
 
 import Backend from 'i18next-http-backend';
 
-
+/**
+ *The languages/locales for i18n to change
+ */
 export const locales = {
 	en: 'en',
 	bg: 'bg'
@@ -71,7 +73,6 @@ const backendOptions = {
 	// overrideMimeType sets request.overrideMimeType("application/json")
 	overrideMimeType: false
 
-	// TODO ::: check if reload needed
 	// reloadInterval: false // can be used to reload resources in a specific interval (useful in server environments)
 };
 
