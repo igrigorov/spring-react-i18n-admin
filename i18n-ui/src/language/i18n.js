@@ -73,7 +73,6 @@ const backendOptions = {
 	// overrideMimeType sets request.overrideMimeType("application/json")
 	overrideMimeType: false
 
-	// TODO ::: check if reload needed
 	// reloadInterval: false // can be used to reload resources in a specific interval (useful in server environments)
 };
 

@@ -3,7 +3,7 @@ package com.example.l10nadmin.model;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-@Data
+@Data    // = @ToString, @EqualsAndHashCode, @Getter, @Setter and @RequiredArgsConstructor
 public class L10nDto {
 
 	@ApiModelProperty(required = true)
