@@ -27,9 +27,9 @@ code {
 	background-repeat: no-repeat;
 	position: relative;
 	display: inline-block;
-	width: 4em;
-	line-height: 3em;
-	margin: 10px;
+	width: 40px;
+	line-height: 30px;
+	margin: 10px 5px 0;
 	border: solid 1px;
 	cursor: pointer;
 }
