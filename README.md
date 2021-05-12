@@ -31,6 +31,16 @@ Settings > Build, Execution, Deployment > Compiler > Build process VM options:
 If you can't/won't have Java 16 as main (JAVA_HOME) JVM, use the [toolchains.xml](./External%20Resources/toolchains.xml) file (put it in your .m2 user directory)
 
 
+# Further Development Instructions
+
+## New Locale
+
+To add a new locale, e.g. `lo`:
+* - add its SVG icon (`lo.svg`) to static/flags
+* - add its code (`lo`) to locales in i18n.js
+* - add translations with `locale=lo` in DB
+    
+
 # Reference Documentation
 For further reference, please consider the following sections:
 
