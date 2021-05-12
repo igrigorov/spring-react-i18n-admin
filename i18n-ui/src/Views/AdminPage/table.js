@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Button, Checkbox, TextField} from "@material-ui/core";
 import MaterialTable from "material-table";
 import {useTranslation} from 'react-i18next';
+import {DelayInput} from "react-delay-input/lib/Component";
 
 export default function AdminTable() {
 
@@ -28,7 +29,8 @@ export default function AdminTable() {
 						tableData.push({
 							lic: entry.lic,
 							active: entry.active,
-							[entry.locale]: entry.value
+							[entry.locale]: entry.value,
+							save: true
 						})
 						find = true;
 					} else {
@@ -45,7 +47,8 @@ export default function AdminTable() {
 						tableData.push({
 							lic: entry.lic,
 							active: entry.active,
-							[entry.locale]: entry.value
+							[entry.locale]: entry.value,
+							save : true
 						})
 				})
 				setHeaders(tempHeader);
@@ -59,13 +62,22 @@ export default function AdminTable() {
 		setData({...data, ...temp});
 	};
 
-	const handleChangeTextfield = (event) => (row) => {
-		/*let temp = data;
-		temp[row.tableData.id].active = event.target.checked;
-		setData({...data, ...temp});*/
-		console.log(row);
+	const handleChangeTextField = (event) => (row) => {
+		let newValue = event.target.value;
+		let getColumn = event.target.id.substr(event.target.id.length - 2);
+		let temp = data;
+		row[getColumn] = newValue;
+		row.save = false;
+		temp[row.tableData.id] = row;
+		setData({...data, ...temp});
 	};
 
+	const handleChangeSaveButton = () => (row) => {
+		let temp = data;
+		row.save = true;
+		temp[row.tableData.id] = row;
+		setData({...data, ...temp});
+	};
 
 	let columns = [
 		{
@@ -91,13 +103,24 @@ export default function AdminTable() {
 		for (let i = 0; i < headers.length; i++) {
 			columns.push({
 				title: headers[i], field: headers[i], render: (row) => (
-					<TextField onChange={(e) => handleChangeCheckbox(e)(row)}
-							   defaultValue={row[headers[i]]}/>)
+					<DelayInput id={row.tableData.id + headers[i]}
+								element={TextField}
+								minLength={0}
+								delayTimeout={300}
+								onChange={(e) => handleChangeTextField(e)(row)}
+								value={row[headers[i]]}/>)
 			});
 		}
 	}
 	columns.push({
-		title: "", field: "save", render: () => (<Button style={{textTransform: 'none'}} variant="contained" disabled>Save</Button>)
+		title: "", field: "save", render: (row) => (
+			<Button style={{textTransform: 'none'}}
+					variant="contained"
+					disabled={row.save}
+					onClick={(e) => handleChangeSaveButton(e)(row)}>
+				Save
+			</Button>
+		)
 	})
 	return (
 		<MaterialTable
