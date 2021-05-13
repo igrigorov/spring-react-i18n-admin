@@ -87,7 +87,7 @@ export default function AdminTable() {
 			})
 		})
 		let requestForm = {active: row.active, values};
-		let response = await UpdateExistingEntry("http://localhost:8080/l10n/", requestForm, row.lic);
+		let response = await UpdateExistingEntry(requestForm, row.lic);
 		console.log(response)
 		if (response) {
 			let temp = data;
