@@ -9,6 +9,7 @@ const parseBoolean = value => {
 	}
 };
 
+/** Whether the environment is built for production */
 export const isProduction = parseBoolean(process.env.REACT_APP_PROD);
 export const isLocal = parseBoolean(process.env.REACT_APP_LOCAL);
 export const hasNoBaseUrl = parseBoolean(process.env.REACT_APP_NO_BASEURL);
