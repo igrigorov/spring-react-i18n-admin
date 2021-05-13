@@ -50,7 +50,7 @@ export default function AdminTable() {
 							lic: entry.lic,
 							active: entry.active,
 							[entry.locale]: entry.value,
-							save : true
+							save: true
 						})
 				})
 				setHeaders(tempHeader);
@@ -101,6 +101,8 @@ export default function AdminTable() {
 		{
 			title: t("admin.active"),
 			field: "active",
+			width: '5%',
+			align: "center",
 			render: (row) => (
 				<Checkbox
 					checked={row.active}
@@ -110,7 +112,12 @@ export default function AdminTable() {
 				/>
 			)
 		},
-		{title: "LIC", field: "lic"}
+		{
+			title: "LIC",
+			field: "lic",
+			align: "center",
+			width: '15%'
+		}
 	];
 
 	/**
@@ -118,25 +125,35 @@ export default function AdminTable() {
 	 */
 
 	if (headers.length > 0) {
+		let width = (100 - 25) / headers.length;
 		for (let i = 0; i < headers.length; i++) {
 			columns.push({
-				title: headers[i], field: headers[i], render: (row) => (
+				title: headers[i],
+				field: headers[i],
+				width: width + "%",
+				align: "center",
+				render: (row) => (
 					<DelayInput id={row.tableData.id + headers[i]}
 								element={TextField}
 								minLength={0}
 								delayTimeout={300}
 								onChange={(e) => handleChangeTextField(e)(row)}
+								multiline
 								value={row[headers[i]]}/>)
 			});
 		}
 	}
 	columns.push({
-		title: "", field: "save", render: (row) => (
+		title: "",
+		field: "save",
+		width: '5%',
+		align: "center",
+		render: (row) => (
 			<Button style={{textTransform: 'none'}}
 					variant="contained"
 					disabled={row.save}
 					onClick={(e) => handleChangeSaveButton(e)(row)}>
-				Save
+				{t("admin.Save")}
 			</Button>
 		)
 	})
@@ -150,6 +167,13 @@ export default function AdminTable() {
 				paging: false,
 				tableLayout: "auto",
 				maxBodyHeight: 580,
-			}}/>)
+			}}
+			localization={{
+				toolbar: {
+					searchPlaceholder: t("admin.Search")
+				}
+			}}
+		/>
+	)
 
 }
