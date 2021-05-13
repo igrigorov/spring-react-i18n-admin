@@ -3,6 +3,8 @@ import {Button, Checkbox, TextField} from "@material-ui/core";
 import MaterialTable from "material-table";
 import {useTranslation} from 'react-i18next';
 import {DelayInput} from "react-delay-input/lib/Component";
+import UpdateExistingEntry from "../../Networking/API/UpdateExistingEntry"
+import {locales} from "../../language/i18n";
 
 export default function AdminTable() {
 
@@ -72,11 +74,27 @@ export default function AdminTable() {
 		setData({...data, ...temp});
 	};
 
-	const handleChangeSaveButton = () => (row) => {
-		let temp = data;
-		row.save = true;
-		temp[row.tableData.id] = row;
-		setData({...data, ...temp});
+	const handleChangeSaveButton = () => async (row) => {
+		let values = [];
+		Object.keys(locales).forEach(lang => {
+			Object.keys(row).forEach(line => {
+				if (lang === line.toLowerCase()) {
+					values.push({
+						localeName: line,
+						value: row[line]
+					})
+				}
+			})
+		})
+		let requestForm = {active: row.active, values};
+		let response = await UpdateExistingEntry("http://localhost:8080/l10n/", requestForm, row.lic);
+		console.log(response)
+		if (response) {
+			let temp = data;
+			row.save = true;
+			temp[row.tableData.id] = row;
+			setData({...data, ...temp});
+		}
 	};
 
 	let columns = [
