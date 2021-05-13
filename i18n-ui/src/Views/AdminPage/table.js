@@ -76,16 +76,16 @@ export default function AdminTable() {
 
 	const handleChangeSaveButton = () => async (row) => {
 		let values = [];
-		Object.keys(locales).forEach(lang => {
-			Object.keys(row).forEach(line => {
-				if (lang === line.toLowerCase()) {
+		for (const lang in locales) {
+			for (const key in row) {
+				if (lang === key.toLowerCase()) {
 					values.push({
-						localeName: line,
-						value: row[line]
+						localeName: key,
+						value: row[key]
 					})
 				}
-			})
-		})
+			}
+		}
 		let requestForm = {active: row.active, values};
 		let response = await UpdateExistingEntry("http://localhost:8080/l10n/", requestForm, row.lic);
 		console.log(response)
