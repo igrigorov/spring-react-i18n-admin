@@ -6,7 +6,7 @@ VALUES
     (L10n_id_seq.nextval, 'admin.mainPage', 'BG', 'Главна страница'),
     (L10n_id_seq.nextval, 'admin.mainPage', 'EN', 'Main Page'),
     (L10n_id_seq.nextval, 'admin.Save', 'EN', 'Save'),
-    (L10n_id_seq.nextval, 'admin.Save', 'BG', 'Спасяване'),
+    (L10n_id_seq.nextval, 'admin.Save', 'BG', 'Запази'),
     (L10n_id_seq.nextval, 'admin.Search', 'EN', 'Search'),
     (L10n_id_seq.nextval, 'admin.Search', 'BG', 'Търсене'),
     (L10n_id_seq.nextval, 'sample.adminPage', 'BG', 'Административна страница'),
