@@ -1,7 +1,9 @@
-export default function UpdateExistingEntry(url, data, lic) {
+import {l10nServiceUrl} from '../../constants/endpoints'
 
+export default function UpdateExistingEntry(data, lic) {
+	const url = l10nServiceUrl('/l10n/entry/' + lic)
 	try {
-		return fetch(url + "l10n/entry/" + lic, {
+		return fetch(url, {
 			method: 'PUT', // *GET, POST, PUT, DELETE, etc.
 			mode: 'cors', // no-cors, *cors, same-origin
 			headers: {

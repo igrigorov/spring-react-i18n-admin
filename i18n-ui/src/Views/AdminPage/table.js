@@ -5,6 +5,7 @@ import {useTranslation} from 'react-i18next';
 import {DelayInput} from "react-delay-input/lib/Component";
 import UpdateExistingEntry from "../../Networking/API/UpdateExistingEntry"
 import {locales} from "../../language/i18n";
+import GetAll from "../../Networking/API/GetAll";
 
 export default function AdminTable() {
 
@@ -16,11 +17,11 @@ export default function AdminTable() {
 
 	/**
 	 * Fetching all translations
+	 * Make use of GetAll function instead of a hardcoded fetch
 	 */
 
 	React.useEffect(() => {
-		fetch("http://localhost:8080/l10n/l10n")
-			.then((response => response.json()))
+		GetAll()
 			.then((json) => {
 				let tableData = [];
 				let tempHeader = [];
@@ -50,7 +51,7 @@ export default function AdminTable() {
 							lic: entry.lic,
 							active: entry.active,
 							[entry.locale]: entry.value,
-							save : true
+							save: true
 						})
 				})
 				setHeaders(tempHeader);
@@ -95,7 +96,7 @@ export default function AdminTable() {
 			}
 		}
 		let requestForm = {active: row.active, values};
-		let response = await UpdateExistingEntry("http://localhost:8080/l10n/", requestForm, row.lic);
+		let response = await UpdateExistingEntry(requestForm, row.lic);
 		if (response) {
 			let temp = data;
 			row.save = true;
@@ -133,7 +134,7 @@ export default function AdminTable() {
 								minLength={0}
 								delayTimeout={300}
 								onChange={(e) => handleChangeTextField(e)(row)}
-								onKeyUp = {(e) => handleChangeKeyTextField(e)(row)}
+								onKeyUp={(e) => handleChangeKeyTextField(e)(row)}
 								value={row[headers[i]]}/>)
 			});
 		}
