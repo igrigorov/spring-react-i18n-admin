@@ -8,7 +8,7 @@ import {locales} from "../../language/i18n";
 import GetAll from "../../Networking/API/GetAll";
 
 export default function AdminTable() {
-
+	const tableRef = React.useRef();
 	const [data, setData] = React.useState([]);
 
 	const [headers, setHeaders] = React.useState([]);
@@ -109,8 +109,15 @@ export default function AdminTable() {
 		{
 			title: t("admin.active"),
 			field: "active",
-			width: '5%',
-			align: "center",
+			width: null,
+			cellStyle: {
+				padding: "10px",
+				width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * 0.05 : "0px",
+			},
+			headerStyle: {
+				padding: "10px",
+				width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * 0.05 : "0px",
+			},
 			render: (row) => (
 				<Checkbox
 					checked={row.active}
@@ -123,8 +130,15 @@ export default function AdminTable() {
 		{
 			title: "LIC",
 			field: "lic",
-			align: "center",
-			width: '15%'
+			width: null,
+			cellStyle: {
+				padding: "10px",
+				width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * 0.15 : "0px",
+			},
+			headerStyle: {
+				padding: "10px",
+				width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * 0.15 : "0px",
+			},
 		}
 	];
 
@@ -133,13 +147,20 @@ export default function AdminTable() {
 	 */
 
 	if (headers.length > 0) {
-		let width = (100 - 25) / headers.length;
+		let width = ((100 - 25) / headers.length) / 100;
 		for (let i = 0; i < headers.length; i++) {
 			columns.push({
 				title: headers[i],
 				field: headers[i],
-				width: width + "%",
-				align: "center",
+				width: null,
+				cellStyle: {
+					padding: "10px",
+					width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * width : "0px",
+				},
+				headerStyle: {
+					padding: "10px",
+					width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * width : "0px",
+				},
 				render: (row) => (
 					<DelayInput id={row.tableData.id + headers[i]}
 								element={TextField}
@@ -155,8 +176,15 @@ export default function AdminTable() {
 	columns.push({
 		title: "",
 		field: "save",
-		width: '5%',
-		align: "center",
+		width: null,
+		cellStyle: {
+			padding: "10px",
+			width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * 0.05 : "0px",
+		},
+		headerStyle: {
+			padding: "10px",
+			width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * 0.05 : "0px",
+		},
 		render: (row) => (
 			<Button style={{textTransform: 'none'}}
 					variant="contained"
@@ -168,19 +196,20 @@ export default function AdminTable() {
 	})
 	return (
 		<MaterialTable
+			tableRef={tableRef}
 			columns={columns}
 			data={data}
 			title={""}
+			localization={{
+				toolbar: {
+					searchPlaceholder: t("admin.Search")
+				}
+			}}
 			options={{
 				search: true,
 				paging: false,
 				tableLayout: "auto",
 				maxBodyHeight: 580,
-			}}
-			localization={{
-				toolbar: {
-					searchPlaceholder: t("admin.Search")
-				}
 			}}
 		/>
 	)
