@@ -60,7 +60,9 @@ export default function AdminTable() {
 
 	const handleChangeCheckbox = (event) => (row) => {
 		let temp = data;
-		temp[row.tableData.id].active = event.target.checked;
+		row.save = false;
+		row.active = event.target.checked
+		temp[row.tableData.id] = row;
 		setData({...data, ...temp});
 	};
 
@@ -74,18 +76,24 @@ export default function AdminTable() {
 		setData({...data, ...temp});
 	};
 
+	const handleChangeKeyTextField = (event) => (row) => {
+		if (event.key === "Enter") {
+			handleChangeSaveButton(event)(row)
+		}
+	};
+
 	const handleChangeSaveButton = () => async (row) => {
 		let values = [];
-		Object.keys(locales).forEach(lang => {
-			Object.keys(row).forEach(line => {
-				if (lang === line.toLowerCase()) {
+		for (const lang in locales) {
+			for (const key in row) {
+				if (lang === key.toLowerCase()) {
 					values.push({
-						localeName: line,
-						value: row[line]
+						localeName: key,
+						value: row[key]
 					})
 				}
-			})
-		})
+			}
+		}
 		let requestForm = {active: row.active, values};
 		let response = await UpdateExistingEntry(requestForm, row.lic);
 		console.log(response)
@@ -126,6 +134,7 @@ export default function AdminTable() {
 								minLength={0}
 								delayTimeout={300}
 								onChange={(e) => handleChangeTextField(e)(row)}
+								onKeyUp = {(e) => handleChangeKeyTextField(e)(row)}
 								value={row[headers[i]]}/>)
 			});
 		}
