@@ -9,10 +9,22 @@ const parseBoolean = value => {
 	}
 };
 
-/** Whether the environment is built for production */
+/**
+ * Whether the environment is built for production
+ * @type {boolean}
+ */
 export const isProduction = parseBoolean(process.env.REACT_APP_PROD);
+/**
+ * Whether the environment is built locally
+ * @type {boolean}
+ */
 export const isLocal = parseBoolean(process.env.REACT_APP_LOCAL);
-export const hasNoBaseUrl = parseBoolean(process.env.REACT_APP_NO_BASEURL);
+/**
+ * Define domain urls
+ * @type {string}
+ * @type {string}
+ * @type {string}
+ */
 export const prodBaseUrl = process.env.REACT_APP_PROD_DOMAIN;
 export const devBaseUrl = process.env.REACT_APP_DEV_DOMAIN;
 export const localBaseUrl = process.env.REACT_APP_LOCAL_DOMAIN;
