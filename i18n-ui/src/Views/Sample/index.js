@@ -15,14 +15,13 @@ import {
 	Switch,
 	TextField
 } from "@material-ui/core";
-import {Link} from "react-router-dom";
 import 'react-dropdown/style.css';
 import "../../index.css";
 import {TextArea} from "semantic-ui-react";
 import CancelIcon from '@material-ui/icons/Cancel';
-import {AccountBox} from "@material-ui/icons";
 import {useTranslation} from 'react-i18next';
-import {LanguageHeader} from "../../components";
+import {LanguageHeader, NavTitleHeader} from "../../components";
+import {AccountBox} from "@material-ui/icons";
 
 export default function SamplePage() {
 
@@ -32,20 +31,10 @@ export default function SamplePage() {
 		<div>
 			<LanguageHeader/>
 
-			<div style={{
-				display: 'flex', flexDirection: 'row', justifyContent: 'space-around',
-				alignItems: 'center', width: '100%', marginBottom: '20px'
-			}}>
-				<div style={{display: 'flex', width: '15%', justifyContent: 'space-around'}}/>
-				<div style={{display: 'flex', width: '70%', alignItems: 'center', justifyContent: 'space-around'}}>
-					<h1>{t('sample.title')}</h1>
-				</div>
-				<div style={{display: 'flex', width: '15%', justifyContent: 'space-around'}}>
-					<Button variant="contained" endIcon={<AccountBox/>}>
-						<Link to="/Admin">{t('sample.adminPage')}</Link>
-					</Button>
-				</div>
-			</div>
+			<NavTitleHeader title={t('sample.title')}
+							rightLink={{title: t("sample.adminPage"), route: "/Admin", icon: <AccountBox/>}}
+			/>
+
 			{/*
 			  * Sample Text boxes on top
 			  */}

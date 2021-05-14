@@ -1,5 +1,7 @@
 import LanguageHeader from "./LanguageHeader";
+import NavTitleHeader from "./NavTitleHeader";
 
 export {
-	LanguageHeader
+	LanguageHeader,
+	NavTitleHeader
 }

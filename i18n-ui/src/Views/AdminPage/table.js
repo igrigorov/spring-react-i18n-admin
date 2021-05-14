@@ -5,6 +5,7 @@ import {useTranslation} from 'react-i18next';
 import {DelayInput} from "react-delay-input/lib/Component";
 import UpdateExistingEntry from "../../Networking/API/UpdateExistingEntry"
 import {locales} from "../../language/i18n";
+import GetAll from "../../Networking/API/GetAll";
 
 export default function AdminTable() {
 
@@ -16,11 +17,11 @@ export default function AdminTable() {
 
 	/**
 	 * Fetching all translations
+	 * Make use of GetAll function instead of a hardcoded fetch
 	 */
 
 	React.useEffect(() => {
-		fetch("http://localhost:8080/l10n/l10n")
-			.then((response => response.json()))
+		GetAll()
 			.then((json) => {
 				let tableData = [];
 				let tempHeader = [];
@@ -60,7 +61,9 @@ export default function AdminTable() {
 
 	const handleChangeCheckbox = (event) => (row) => {
 		let temp = data;
-		temp[row.tableData.id].active = event.target.checked;
+		row.save = false;
+		row.active = event.target.checked
+		temp[row.tableData.id] = row;
 		setData({...data, ...temp});
 	};
 
@@ -74,21 +77,26 @@ export default function AdminTable() {
 		setData({...data, ...temp});
 	};
 
+	const handleChangeKeyTextField = (event) => (row) => {
+		if (event.key === "Enter") {
+			handleChangeSaveButton(event)(row)
+		}
+	};
+
 	const handleChangeSaveButton = () => async (row) => {
 		let values = [];
-		Object.keys(locales).forEach(lang => {
-			Object.keys(row).forEach(line => {
-				if (lang === line.toLowerCase()) {
+		for (const lang in locales) {
+			for (const key in row) {
+				if (lang === key.toLowerCase()) {
 					values.push({
-						localeName: line,
-						value: row[line]
+						localeName: key,
+						value: row[key]
 					})
 				}
-			})
-		})
+			}
+		}
 		let requestForm = {active: row.active, values};
-		let response = await UpdateExistingEntry("http://localhost:8080/l10n/", requestForm, row.lic);
-		console.log(response)
+		let response = await UpdateExistingEntry(requestForm, row.lic);
 		if (response) {
 			let temp = data;
 			row.save = true;
@@ -138,6 +146,7 @@ export default function AdminTable() {
 								minLength={0}
 								delayTimeout={300}
 								onChange={(e) => handleChangeTextField(e)(row)}
+								onKeyUp={(e) => handleChangeKeyTextField(e)(row)}
 								multiline
 								value={row[headers[i]]}/>)
 			});
