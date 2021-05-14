@@ -20,13 +20,23 @@ export const isProduction = parseBoolean(process.env.REACT_APP_PROD);
  */
 export const isLocal = parseBoolean(process.env.REACT_APP_LOCAL);
 /**
- * Define domain urls
- * @type {string}
- * @type {string}
- * @type {string}
+ * Production Base URL from .env
+ * @type {boolean}
  */
 export const prodBaseUrl = process.env.REACT_APP_PROD_DOMAIN;
+/**
+ * Development environment Base URL from .env
+ * @type {boolean}
+ */
 export const devBaseUrl = process.env.REACT_APP_DEV_DOMAIN;
+/**
+ * Local Base URL from .env
+ * @type {boolean}
+ */
 export const localBaseUrl = process.env.REACT_APP_LOCAL_DOMAIN;
 
+/**
+ * Application's version from package.json
+ * @type {string}
+ * */
 export const appVersion = process.env.REACT_APP_VERSION;

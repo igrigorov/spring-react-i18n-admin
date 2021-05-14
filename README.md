@@ -36,17 +36,16 @@ If you can't/won't have Java 16 as main (JAVA_HOME) JVM, use the [toolchains.xml
 
 To add a new locale, e.g. `lo`:
 
-*
-    - add its SVG icon (`lo.svg`) to static/flags
-*
-    - add its code (`lo`) to locales in i18n.js
-*
-    - add translations with `locale=lo` in DB
+* add its SVG icon (`lo.svg`) to static/flags
+* add its code (`lo`) to locales in i18n.js
+* add translations with `locale=lo` in DB
 
 ## New domain
 
-To add or edit an existing domain properties you have to configure .env file. Add another domain variable as well as a boolean that points
-in which domain you build for.
+To add or edit an existing domain properties you have to configure .env file. This file can be located externally on the actual environment.
+See https://github.com/motdotla/dotenv#readme for more information.
+
+If you need more than the already configured environments, add another domain variable as well as a boolean that points in which domain you build for.
 
 # Reference Documentation
 
