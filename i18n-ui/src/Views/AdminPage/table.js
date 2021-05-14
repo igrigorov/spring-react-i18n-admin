@@ -169,7 +169,9 @@ export default function AdminTable() {
 								onChange={(e) => handleChangeTextField(e)(row)}
 								onKeyUp={(e) => handleChangeKeyTextField(e)(row)}
 								multiline
-								value={row[headers[i]]}/>)
+								value={row[headers[i]]}
+								style = {{width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * width : "0px"}}
+					/>)
 			});
 		}
 	}
