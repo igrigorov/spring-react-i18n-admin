@@ -5,9 +5,10 @@ import {useTranslation} from 'react-i18next';
 import {DelayInput} from "react-delay-input/lib/Component";
 import UpdateExistingEntry from "../../Networking/API/UpdateExistingEntry"
 import {locales} from "../../language/i18n";
+import GetAll from "../../Networking/API/GetAll";
 
 export default function AdminTable() {
-
+	const tableRef = React.useRef();
 	const [data, setData] = React.useState([]);
 
 	const [headers, setHeaders] = React.useState([]);
@@ -16,11 +17,11 @@ export default function AdminTable() {
 
 	/**
 	 * Fetching all translations
+	 * Make use of GetAll function instead of a hardcoded fetch
 	 */
 
 	React.useEffect(() => {
-		fetch("http://localhost:8080/l10n/l10n")
-			.then((response => response.json()))
+		GetAll()
 			.then((json) => {
 				let tableData = [];
 				let tempHeader = [];
@@ -50,7 +51,7 @@ export default function AdminTable() {
 							lic: entry.lic,
 							active: entry.active,
 							[entry.locale]: entry.value,
-							save : true
+							save: true
 						})
 				})
 				setHeaders(tempHeader);
@@ -95,7 +96,7 @@ export default function AdminTable() {
 			}
 		}
 		let requestForm = {active: row.active, values};
-		let response = await UpdateExistingEntry("http://localhost:8080/l10n/", requestForm, row.lic);
+		let response = await UpdateExistingEntry(requestForm, row.lic);
 		if (response) {
 			let temp = data;
 			row.save = true;
@@ -108,6 +109,15 @@ export default function AdminTable() {
 		{
 			title: t("admin.active"),
 			field: "active",
+			width: null,
+			cellStyle: {
+				padding: "10px",
+				width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * 0.05 : "0px",
+			},
+			headerStyle: {
+				padding: "10px",
+				width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * 0.05 : "0px",
+			},
 			render: (row) => (
 				<Checkbox
 					checked={row.active}
@@ -117,7 +127,19 @@ export default function AdminTable() {
 				/>
 			)
 		},
-		{title: "LIC", field: "lic"}
+		{
+			title: "LIC",
+			field: "lic",
+			width: null,
+			cellStyle: {
+				padding: "10px",
+				width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * 0.15 : "0px",
+			},
+			headerStyle: {
+				padding: "10px",
+				width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * 0.15 : "0px",
+			},
+		}
 	];
 
 	/**
@@ -125,39 +147,75 @@ export default function AdminTable() {
 	 */
 
 	if (headers.length > 0) {
+		let width = ((100 - 25) / headers.length) / 100;
 		for (let i = 0; i < headers.length; i++) {
 			columns.push({
-				title: headers[i], field: headers[i], render: (row) => (
+				title: headers[i],
+				field: headers[i],
+				// divide the width equally between all locale columns
+				width: null,
+				cellStyle: {
+					padding: "10px",
+					width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * width : "0px",
+				},
+				headerStyle: {
+					padding: "10px",
+					width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * width : "0px",
+				},
+				render: (row) => (
 					<DelayInput id={row.tableData.id + headers[i]}
 								element={TextField}
 								minLength={0}
 								delayTimeout={300}
 								onChange={(e) => handleChangeTextField(e)(row)}
-								onKeyUp = {(e) => handleChangeKeyTextField(e)(row)}
-								value={row[headers[i]]}/>)
+								onKeyUp={(e) => handleChangeKeyTextField(e)(row)}
+								multiline
+								value={row[headers[i]]}
+								style = {/* This is in order the text fields to fill the whole column */
+									{width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * width : "0px"}}
+					/>)
 			});
 		}
 	}
 	columns.push({
-		title: "", field: "save", render: (row) => (
+		title: "",
+		field: "save",
+		width: null,
+		cellStyle: {
+			padding: "10px",
+			width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * 0.05 : "0px",
+		},
+		headerStyle: {
+			padding: "10px",
+			width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * 0.05 : "0px",
+		},
+		render: (row) => (
 			<Button style={{textTransform: 'none'}}
 					variant="contained"
 					disabled={row.save}
 					onClick={(e) => handleChangeSaveButton(e)(row)}>
-				Save
+				{t("admin.Save")}
 			</Button>
 		)
 	})
 	return (
 		<MaterialTable
+			tableRef={tableRef}
 			columns={columns}
 			data={data}
 			title={""}
+			localization={{
+				toolbar: {
+					searchPlaceholder: t("admin.Search")
+				}
+			}}
 			options={{
 				search: true,
 				paging: false,
 				tableLayout: "auto",
 				maxBodyHeight: 580,
-			}}/>)
+			}}
+		/>
+	)
 
 }
