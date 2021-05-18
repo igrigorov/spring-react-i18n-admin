@@ -152,6 +152,7 @@ export default function AdminTable() {
 			columns.push({
 				title: headers[i],
 				field: headers[i],
+				// divide the width equally between all locale columns
 				width: null,
 				cellStyle: {
 					padding: "10px",
@@ -170,7 +171,8 @@ export default function AdminTable() {
 								onKeyUp={(e) => handleChangeKeyTextField(e)(row)}
 								multiline
 								value={row[headers[i]]}
-								style = {{width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * width : "0px"}}
+								style = {/* This is in order the text fields to fill the whole column */
+									{width: tableRef.current ? tableRef.current.tableContainerDiv.current.offsetWidth * width : "0px"}}
 					/>)
 			});
 		}
