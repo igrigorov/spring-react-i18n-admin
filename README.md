@@ -13,7 +13,7 @@ Implementation stack (the latest possible to date):
 
 ## IntelliJ
 
-IntelliJ version 21.1 is required, as it is the earliest supporting Java 16.  
+IntelliJ version 21.1+ is required, as it is the earliest supporting Java 16.  
 In addition, NodeJS version 10+ is required in order to run React.
 
 ### Local compile JVM options
@@ -28,7 +28,7 @@ Settings > Build, Execution, Deployment > Compiler > Build process VM options:
 
 ## Maven Toolchains
 
-If you can't/won't have Java 16 as main (JAVA_HOME) JVM, use the [toolchains.xml](./External%20Resources/toolchains.xml) file (put it in your .m2 user directory)
+If you can't/won't have Java 16+ as main JVM (JAVA_HOME), use the [toolchains.xml](./External%20Resources/toolchains.xml) file (put it in your .m2 user directory)
 
 # Further Development Instructions
 
