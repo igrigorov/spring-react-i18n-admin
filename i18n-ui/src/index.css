@@ -30,9 +30,13 @@ code {
 	width: 40px;
 	line-height: 30px;
 	margin: 10px 5px 0;
-	border: solid 1px;
 	cursor: pointer;
 }
+
+.shadowed {
+	box-shadow: 2px 2px 5px grey;
+}
+
 .flag-icon-background {
 	background-size: contain;
 	background-position: 50%;
