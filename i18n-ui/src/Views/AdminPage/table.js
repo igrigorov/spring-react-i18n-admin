@@ -78,7 +78,7 @@ export default function AdminTable() {
 	};
 
 	const handleChangeKeyTextField = (event) => (row) => {
-		if (event.key === "Enter") {
+		if (event.key === "Enter" && event.ctrlKey) {
 			handleChangeSaveButton(event)(row)
 		}
 	};
@@ -168,7 +168,7 @@ export default function AdminTable() {
 								minLength={0}
 								delayTimeout={300}
 								onChange={(e) => handleChangeTextField(e)(row)}
-								onKeyUp={(e) => handleChangeKeyTextField(e)(row)}
+								onKeyDown={(e) => handleChangeKeyTextField(e)(row)}
 								multiline
 								value={row[headers[i]]}
 								style = {/* This is in order the text fields to fill the whole column */
