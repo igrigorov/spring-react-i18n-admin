@@ -8,11 +8,10 @@ import Backend from 'i18next-http-backend';
  */
 export const locales = {
 	en: 'en',
-	bg: 'bg'
+	bg: 'bg',
+	lic: 'lic'
 };
 
-const getAppLanguageFromLocalStorage = localStorageKey =>
-	localStorage.getItem(localStorageKey) || locales.bg;
 const setAppLanguageInLocalStorage = localStorageKey => language =>
 	localStorage.setItem(localStorageKey, language);
 const localStorageKey = 'i18nextLng';
@@ -86,11 +85,11 @@ i18n
 	// for all options read: https://www.i18next.com/overview/configuration-options
 	.init({
 		backend: backendOptions,
-		lng: getAppLanguageFromLocalStorage(localStorageKey),
+		lng: 'en', // set default lang
 		whitelist: [locales.en, locales.bg],
 		nonExplicitWhitelist: false,
 		// resources,
-		fallbackLng: locales.bg,
+		//fallbackLng: locales.bg, //set the data from this locale if fail/empty data from the call
 		keySeparator: false,
 		nsSeparator: false,
 		// debug: true,
