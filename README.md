@@ -47,6 +47,11 @@ See https://github.com/motdotla/dotenv#readme for more information.
 
 If you need more than the already configured environments, add another domain variable as well as a boolean that points in which domain you build for.
 
+# Future Development
+
+* Automated testing in the UI
+* Continuous Delivery (e.g. on Google Cloud)
+
 # Reference Documentation
 
 For further reference, please consider the following sections:
