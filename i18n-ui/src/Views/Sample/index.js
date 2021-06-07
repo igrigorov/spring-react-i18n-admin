@@ -16,8 +16,7 @@ import {
 	TextField
 } from "@material-ui/core";
 import 'react-dropdown/style.css';
-import "../../index.css";
-import {TextArea} from "semantic-ui-react";
+import styles from "./styles.module.css";
 import CancelIcon from '@material-ui/icons/Cancel';
 import {useTranslation} from 'react-i18next';
 import {LanguageHeader, NavTitleHeader} from "../../components";
@@ -107,7 +106,11 @@ export default function SamplePage() {
 					marginBottom: '20px', alignItems: 'center', width: '66%'
 				}}>
 					<form>
-						<TextArea style={{minHeight: 130, width: 730, alignItems: "left"}}
+						<TextField style={{width: 730, alignItems: "left"}}
+								   variant="outlined"
+								   multiline
+								   rows={3}
+								   rowsMax={6}
 								  defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit"/>
 					</form>
 				</div>
@@ -127,7 +130,7 @@ export default function SamplePage() {
 						{/*
 						  * Sample radio group
 						  */}
-						<FormControl color="secondary" variant="outlined" class={"controlGroup"}>
+						<FormControl color="secondary" variant="outlined" className={styles.controlGroup}>
 							<FormLabel>{t("sample.radioGroup")}</FormLabel>
 							<RadioGroup value={"option1"}>
 								<FormControlLabel
@@ -155,7 +158,7 @@ export default function SamplePage() {
 						{/*
 						  * Sample checkbox group
 						  */}
-						<FormControl color="secondary" variant="outlined" class={"controlGroup"}>
+						<FormControl color="secondary" variant="outlined" className={styles.controlGroup}>
 							<FormLabel>{t("sample.checkBoxGroup")}</FormLabel>
 							<FormGroup>
 								<FormControlLabel
@@ -180,7 +183,7 @@ export default function SamplePage() {
 						{/*
 						  * Sample toggle switch group
 						  */}
-						<FormControl color="secondary" variant="outlined" class={"controlGroup"}>
+						<FormControl color="secondary" variant="outlined" className={styles.controlGroup}>
 							<FormLabel aria-grabbed={true}>{t("sample.toggleSwitchGroup")}</FormLabel>
 							<FormGroup>
 								<FormControlLabel

@@ -86,6 +86,8 @@ export default function AdminTable() {
 	const handleChangeSaveButton = () => async (row) => {
 		let values = [];
 		for (const lang in locales) {
+			// not checking for own property to improve performance
+			// noinspection JSUnfilteredForInLoop
 			for (const key in row) {
 				if (lang === key.toLowerCase()) {
 					values.push({

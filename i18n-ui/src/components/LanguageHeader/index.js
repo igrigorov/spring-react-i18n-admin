@@ -14,10 +14,11 @@ class LanguageHeader extends Component {
 			<div style={{display: 'block', width: '100%', textAlign: "center"}}>
 				{Object.entries(locales).map((localeKVPair) => {
 					let loc = localeKVPair[1];
-					let classes = "flag-icon"
+					let classes = "flag-icon";
 					if (loc !== "lic")
 						classes += " shadowed";
-					return <span className={classes} onClick={() => changeLanguage(loc)}
+					return <span key={loc}
+						className={classes} onClick={() => changeLanguage(loc)}
 								 style={{ backgroundImage: `url(/flags/${loc}.svg)` }}
 								 title={loc.toUpperCase()}>&nbsp;</span>;
 				})}
