@@ -19,7 +19,6 @@ class L10NApplicationTests {
 	@Autowired
 	private MockMvc mvc;
 
-
 	@Test
 	@DisplayName("GET all English entries: /locale/EN")
 	public void getBgEntries() throws Exception {
@@ -36,17 +35,27 @@ class L10NApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
 	}
+
 	@Test
 	@DisplayName("insert new entry")
 	public void insertNewEntry() throws Exception {
-		mvc.perform(post("/l10n/l10n/entry").contentType(MediaType.APPLICATION_JSON)
-			.content("""
+		mvc.perform(post("/l10n/l10n/entry").contentType(MediaType.APPLICATION_JSON).content("""
 				{
 					"locale": "GR",
 					"lic": "test.third",
 					"value": "test"
-				}"""))
-			.andExpect(status().isOk());}
+				}""")).andExpect(status().isOk());
+	}
+
+	@Test
+	@DisplayName("insert new entry")
+	public void insertNewEntryBetterStrings() throws Exception {
+		@SuppressWarnings("unused")
+		var third = "third";
+		var payload = "{\"locale\": \"GR\", \"lic\": \"test.${2+1}\", \"value\": \"${third}\"}";
+		System.out.println(payload);
+		mvc.perform(post("/l10n/l10n/entry").contentType(MediaType.APPLICATION_JSON).content(payload)).andExpect(status().isOk());
+	}
 
 	@Test
 	@DisplayName("replace existing entry")

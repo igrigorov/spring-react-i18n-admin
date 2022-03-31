@@ -14,9 +14,10 @@
 	<packaging>jar</packaging>
 
 	<properties>
+		<better-strings.version>0.5</better-strings.version>
 		<flyway.version>7.7.2</flyway.version>
 		<logback.version>1.2.3</logback.version>
-		<lombok.version>1.18.20</lombok.version>
+		<lombok.version>1.18.22</lombok.version>
 		<swagger-ui.version>3.0.0</swagger-ui.version>
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
 		<org.lombok-mapstruct-binding.version>0.2.0</org.lombok-mapstruct-binding.version>
@@ -80,6 +81,8 @@
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>${mapstruct.version}</version>
+			<optional>true</optional>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -108,7 +111,12 @@
 			<version>${logback.version}</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>com.antkorwin</groupId>
+			<artifactId>better-strings</artifactId>
+			<version>${better-strings.version}</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -122,16 +130,17 @@
 					<fork>true</fork>
 					<!-- All these are needed in order for lombok to work with Java 16 🙄 -->
 					<compilerArgs>
+						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
 						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
 						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
 						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED</arg>
 						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
 						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
 						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
 						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
 						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
 						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
-						<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED</arg>
 					</compilerArgs>
 					<!--for unmappable characters in classes-->
 					<encoding>UTF-8</encoding>
@@ -155,6 +164,12 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok-mapstruct-binding</artifactId>
 							<version>${org.lombok-mapstruct-binding.version}</version>
+						</path>
+
+						<path>
+							<groupId>com.antkorwin</groupId>
+							<artifactId>better-strings</artifactId>
+							<version>${better-strings.version}</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>

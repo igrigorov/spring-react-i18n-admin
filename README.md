@@ -5,6 +5,7 @@ Template implementation of React i18n with translations in DB.
 Backend implemented in Spring Boot with JPA. DB is H2, just for sample purposes.
 
 Implementation stack (the latest possible to date):
+
 * Spring Boot 2.5.0-M3
 * React 17.0.2
 * Java 16 (with an uugly workaround in the maven-compiler plugin in order for Lombok to work)
@@ -18,17 +19,26 @@ In addition, NodeJS version 10+ is required in order to run React.
 
 ### Local compile JVM options
 
-In order for the application to run under IntelliJ, the following should be added to the compiler JVM settings (again due to Lombok vs. Java 16 incompatibility)
+In order for the application to run under IntelliJ, the following should be added to the compiler JVM settings (again due to Lombok vs. Java
+16 incompatibility)
 
 Settings > Build, Execution, Deployment > Compiler > Build process VM options:
 
 ```
---add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED
+--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-opens=jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED
 ```
+
+### Better Strings building
+
+Apart from the extra --add-opens...com.sun.tools.javac.api above that was needed in order for better-strings to work, IntelliJ seems it
+cannot handle building the triple annotation processors on its own and it works only when building with Maven. As a bad workaround, enable:
+
+Settings => Build, Execution Deployment => Maven => Runner: Delegate IDE build/run actions to maven
 
 ## Maven Toolchains
 
-If you can't/won't have Java 16+ as main JVM (JAVA_HOME), use the [toolchains.xml](./External%20Resources/toolchains.xml) file (put it in your .m2 user directory)
+If you can't/won't have Java 16+ as main JVM (JAVA_HOME), use the [toolchains.xml](./External%20Resources/toolchains.xml) file (put it in
+your .m2 user directory)
 
 # Further Development Instructions
 
@@ -45,7 +55,8 @@ To add a new locale, e.g. `lo`:
 To add or edit an existing domain properties you have to configure .env file. This file can be located externally on the actual environment.
 See https://github.com/motdotla/dotenv#readme for more information.
 
-If you need more than the already configured environments, add another domain variable as well as a boolean that points in which domain you build for.
+If you need more than the already configured environments, add another domain variable as well as a boolean that points in which domain you
+build for.
 
 # Future Development
 
@@ -65,6 +76,7 @@ For further reference, please consider the following sections:
 * [Flyway Migration](https://docs.spring.io/spring-boot/docs/2.4.4/reference/htmlsingle/#howto-execute-flyway-database-migrations-on-startup)
 
 ### Guides
+
 The following guides illustrate how to use some features concretely:
 
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
